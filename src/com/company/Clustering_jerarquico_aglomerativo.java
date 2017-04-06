@@ -1,8 +1,8 @@
-package Compartit;
+//package Compartit;
 /**
  * @author Enric F D
  */
-
+/*
 public class Arbol_completo extends Algoritmo_clustering{
     	
   struct cluster{
@@ -101,5 +101,5 @@ public class Arbol_completo extends Algoritmo_clustering{
         }
      }
 	 
- }
+ }*/
 
