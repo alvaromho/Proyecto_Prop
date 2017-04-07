@@ -26,7 +26,6 @@ public class Cluster {
     public int getId_cluster() {
         return id_cluster;
     }
-
     public void setId_cluster(int id_cluster) {
         this.id_cluster = id_cluster;
     }
