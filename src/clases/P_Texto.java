@@ -3,14 +3,14 @@ package clases;
 /**
  * 
  */
-public class Texto extends Pregunta {
+public class P_Texto extends Pregunta {
 
     /**
      * Atributos
      */
     public int max_length;
 
-    public Texto(int id_pregunta, String enunciado, boolean no_sabe) {
+    public P_Texto(int id_pregunta, String enunciado, boolean no_sabe) {
         super(id_pregunta, enunciado, no_sabe);
     }
 

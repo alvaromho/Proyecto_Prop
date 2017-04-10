@@ -2,9 +2,9 @@ package clases;
 import java.util.*;
 
 /**
- * 
+ *
  */
-public class Multiopcion extends Pregunta {
+public class P_Multiopcion extends Pregunta {
 
 
 
@@ -13,7 +13,7 @@ public class Multiopcion extends Pregunta {
     private int max_alternativas;
 
 
-    public Multiopcion(int id_pregunta, String enunciado, boolean no_sabe) {
+    public P_Multiopcion(int id_pregunta, String enunciado, boolean no_sabe) {
         super(id_pregunta, enunciado, no_sabe);
     }
 
