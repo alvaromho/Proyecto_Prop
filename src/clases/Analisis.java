@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- *  Clase responsable de realizar y manejar los analisis realisados sobre una muestra de encuestas respondidas
+ *  Clase responsable de realizar y manejar los analisis realizados sobre una muestra de encuestas respondidas
  */
 public class Analisis {
 

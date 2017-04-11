@@ -1,5 +1,7 @@
 package clases;
 
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+
 import java.io.IOException;
 import java.util.*;
 
@@ -13,20 +15,65 @@ public class Encuesta {
     private int id;
     private String name;
     private Calendar creation_date;
-    private ArrayList<Pregunta> ll_preguntes;
+    private ArrayList<Pregunta> ll_preguntes = new ArrayList<>();
+    private ArrayList<Encuesta_Respondida> ll_encuestas_respondidas = new ArrayList<>();
 
     private static int id_count = 1;
 
 
-    public Encuesta() throws IOException {
+    public Encuesta() {
         this.id = id_count;
         ++id_count;
+        System.out.println("Introduce un nombre para la encuesta:");
         Scanner scanner = new Scanner(System.in);
         this.name = scanner.next();
         this.creation_date = Calendar.getInstance();
-        int n = System.in.read();
+        /*int n = System.in.read();
         for (int i = 0; i < n; ++i) {
-            //------------------------------------------------------------
+    ¡
+        }*/
+        System.out.println("Introduce un numero para escoger el tipo de pregunta que quieres crear: ");
+        System.out.println("1: Tipo Gradual");
+        System.out.println("2: Tipo Multiopcion");
+        System.out.println("3: Tipo Numerico");
+        System.out.println("4: Tipo Texto(respuesta libre)");
+        System.out.println("0: Fi");
+        int tipus_pregunta = Integer.parseInt(scanner.next());
+        while (tipus_pregunta != 0) {
+            switch (tipus_pregunta) {
+                case 1:
+                    P_Gradual pg = new P_Gradual();
+                    ll_preguntes.add(pg);
+                  /*  p.id = p.id_count;
+                    p.enunciado = scanner.next();
+                    p.no_sabe = (System.in.read() == 1);
+                    System.out.println("Inserta el nombre de opcions que vols tenir:");
+                    int n = System.in.read();
+                    for (int i = 0; i < n; ++i) {
+                        String s = scanner.next();
+                        p.enunciado_opcion.add(s);
+                    } */
+
+                    break;
+                case 2:
+                    P_Multiopcion pm = new P_Multiopcion();
+                    ll_preguntes.add(pm);
+                    break;
+
+                case 3:
+                    P_Numerico pn = new P_Numerico();
+                    ll_preguntes.add(pn);
+                    break;
+
+                case 4:
+                    P_Texto pt = new P_Texto();
+                    ll_preguntes.add(pt);
+                    break;
+                default:
+                    System.out.println("Opcio no vàlida");
+            }
+            System.out.println("Seguent Pregunta a introduir: ");
+            tipus_pregunta = Integer.parseInt(scanner.next());
         }
     }
 
@@ -86,15 +133,26 @@ public class Encuesta {
     //Se reemplaza una pregunta por otra, devuelve true si la pregunta_old se encuera en ll_preguntes, false en caso contrario
         int index = ll_preguntes.indexOf(pregunta_old);
         if (index == -1) return false;
-        ll_preguntes.remove(index);
-        ll_preguntes.add(index, pregunta_new);
+        ll_preguntes.set(index, pregunta_new);
         return true;
     }
 
     public void modificar_pregunta_indice(int index, Pregunta pregunta_new){
         //Se reemplaza una pregunta por otra, devuelve true si se ejecuta correctamente, false en caso contrario
-        ll_preguntes.remove(index);
-        ll_preguntes.add(index, pregunta_new);
+        ll_preguntes.set(index, pregunta_new);
+    }
+
+    public Pregunta ll_preguntes(int id_encuesta) {
+        //Retorna el ll_preguntes donat un id_encuesta
+        return ll_preguntes.get(id_encuesta);
+    }
+
+    public void responder(){
+        Encuesta_Respondida er = new Encuesta_Respondida(this);
+        for (Pregunta p : ll_preguntes) {
+            er.añadir_respuesta(p);
+        }
+        ll_encuestas_respondidas.add(er);
     }
 
 

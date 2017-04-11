@@ -8,8 +8,7 @@ public class P_Numerico extends Pregunta {
     private int min;
     private int max;
 
-    public P_Numerico(int id_pregunta, String enunciado, boolean no_sabe) {
-        super(id_pregunta, enunciado, no_sabe);
+    public P_Numerico() {
     }
 
     public int getMin() {

@@ -10,6 +10,9 @@ public class P_Texto extends Pregunta {
      */
     public int max_length;
 
+    public P_Texto() {
+    }
+
     public P_Texto(int id_pregunta, String enunciado, boolean no_sabe) {
         super(id_pregunta, enunciado, no_sabe);
     }

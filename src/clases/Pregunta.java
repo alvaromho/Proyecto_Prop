@@ -3,23 +3,30 @@ package clases;
 
 public class Pregunta {
 
-    protected int id_pregunta;
+    protected int id;
     protected String enunciado;
     protected boolean no_sabe;
 
+    protected static int id_count = 1;
+
+    public Pregunta() {
+    }
+
     //Constructor
     public Pregunta(int id_pregunta, String enunciado, boolean no_sabe) {
-        this.id_pregunta = id_pregunta;
+        this.id = id_pregunta;
         this.enunciado = enunciado;
         this.no_sabe = no_sabe;
+
+
     }
 
     public int getId_pregunta() {
-        return id_pregunta;
+        return id;
     }
 
     public void setId_pregunta(int id_pregunta) {
-        this.id_pregunta = id_pregunta;
+        this.id = id_pregunta;
     }
 
     public String getEnunciado() {
