@@ -1,10 +1,8 @@
 package clases;
 import java.util.*;
 import java.lang.*;
-/*Paula Alemany*/
-/**
- *
- */
+/*Paula*/
+
 public class P_Multiopcion extends Pregunta {
 
     private int min_alternativas;
@@ -21,11 +19,11 @@ public class P_Multiopcion extends Pregunta {
             enunciado_opcion.add(scanner.next());
         }
         System.out.println("Introduce el numero maximo de alternativas que se pueden responder: ");
-        int max = scanner.nextInt();
-        this.max_alternativas = max;
+        int maximo = scanner.nextInt();
+        this.max_alternativas = maximo;
         System.out.println("Introduce el numero minimo de alternativas que se pueden responder: ");
-        int min = scanner.nextInt();
-        this.min_alternativas = min;
+        int minimo = scanner.nextInt();
+        this.min_alternativas = minimo;
     }
 
     public P_Multiopcion(String enunciado, int min_alternativas, int max_alternativas, ArrayList<String> enunciado_opcion) {
