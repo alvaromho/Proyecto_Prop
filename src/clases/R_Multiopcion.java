@@ -92,10 +92,18 @@ public class R_Multiopcion extends Respuesta {
 
     }
 
-    public R_Multiopcion(P_Multiopcion pregunta, boolean no_contesta, String valor) {
+    public R_Multiopcion(P_Multiopcion pregunta, boolean no_contesta, boolean valor[]) {
         super(no_contesta);
         this.pregunta = pregunta;
-        this.valor = valor;
+        String string_valor = "";
+        for (int i = 0 ; i< valor.length ; i++ ){
+            if (valor[i] == true){
+                string_valor += "1";
+            }else {
+                string_valor += "0";
+            }
+        }
+        this.valor = string_valor;
     }
     @Override
     public Object getValor() {return valor;}
