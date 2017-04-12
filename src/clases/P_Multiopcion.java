@@ -1,6 +1,7 @@
 package clases;
 import java.util.*;
 import java.lang.*;
+
 /*Paula*/
 
 public class P_Multiopcion extends Pregunta {
@@ -11,17 +12,17 @@ public class P_Multiopcion extends Pregunta {
 
 
     public P_Multiopcion() {
-        System.out.println("Introduce el numero de opciones que quiere poner: ");
+        System.out.println("Introduce el numero de opciones que quiere poner:");
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
-        System.out.println("Introduce las posibles respuestas: ");
+        System.out.println("Introduce las posibles respuestas:");
         for (int i = 0; i < n; ++i) {
             enunciado_opcion.add(scanner.next());
         }
-        System.out.println("Introduce el numero maximo de alternativas que se pueden responder: ");
+        System.out.println("Introduce el numero maximo de alternativas que se pueden responder:");
         int maximo = scanner.nextInt();
         this.max_alternativas = maximo;
-        System.out.println("Introduce el numero minimo de alternativas que se pueden responder: ");
+        System.out.println("Introduce el numero minimo de alternativas que se pueden responder:");
         int minimo = scanner.nextInt();
         this.min_alternativas = minimo;
     }
