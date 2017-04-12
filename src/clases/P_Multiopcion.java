@@ -56,4 +56,8 @@ public class P_Multiopcion extends Pregunta {
     public void setEnunciado_opcion(ArrayList<String> enunciado_opcion) {
         this.enunciado_opcion = enunciado_opcion;
     }
+
+    public int getSizeEncunciado_Opcion() {
+        return this.enunciado_opcion.size();
+    }
 }
