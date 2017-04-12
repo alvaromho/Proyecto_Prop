@@ -6,16 +6,16 @@ import
  * Paula Alemany
  */
 public class Muestra {
-
-
+    /*Atributos*/
     private int id_muestra;
+    private static int contador = 1;
     private ArrayList<Encuesta_Respondida> lista_respuestas = new ArrayList();
     private Encuesta encuesta;
-    /*
-     * Default constructor
-     */
-    public Muestra() {
 
+    public Muestra(Encuesta e) {
+        this.encuesta = e;
+        encuesta
+        this.id_muestra = contador++;
     }
 
     public String consultar_nom_encuesta(int id){
@@ -23,7 +23,7 @@ public class Muestra {
     }
 
     public ArrayList<Encuesta_Respondida> get_lista_respuesta(){
-        return lista_respuestas;
+        return this.lista_respuestas;
     }
 
     public void set_lista_respuestas(ArrayList<Encuesta_Respondida> EncuestasRespondidas){

@@ -13,7 +13,19 @@ public class P_Multiopcion extends Pregunta {
 
 
     public P_Multiopcion() {
-
+        System.out.println("Introduce el numero de opciones que quiere poner: ");
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        System.out.println("Introduce las posibles respuestas: ");
+        for (int i = 0; i < n; ++i) {
+            enunciado_opcion.add(scanner.next());
+        }
+        System.out.println("Introduce el numero maximo de alternativas que se pueden responder: ");
+        int max = scanner.nextInt();
+        this.max_alternativas = max;
+        System.out.println("Introduce el numero minimo de alternativas que se pueden responder: ");
+        int min = scanner.nextInt();
+        this.min_alternativas = min;
     }
 
     public P_Multiopcion(String enunciado, int min_alternativas, int max_alternativas, ArrayList<String> enunciado_opcion) {
