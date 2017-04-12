@@ -1,4 +1,6 @@
 package clases;
+import java.util.*;
+import java.io.*;
 
 /**
  * 
@@ -14,10 +16,9 @@ public class P_Texto extends Pregunta {
      * Creadora
      */
     public P_Texto() {
-        System.out.println("Introduce el tamaño maximo del texto: ");
+        System.out.println("Introduce el tamaño maximo del texto:");
         Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        this.max_length = n;
+        this.max_length = scanner.nextInt();
     }
 
     /**
