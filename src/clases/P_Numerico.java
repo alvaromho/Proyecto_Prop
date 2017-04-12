@@ -9,6 +9,7 @@ public class P_Numerico extends Pregunta {
     private int max;
 
     public P_Numerico() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Introduce el numero maximo que se puede responder: ");
         int max = scanner.nextInt();
         this.max = max;
