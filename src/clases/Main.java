@@ -1,11 +1,12 @@
 package clases;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // write your code here
 
 
@@ -26,6 +27,12 @@ public class Main {
             switch (opcio) {
                 case 1:
                     e = new Encuesta();
+                    ll_encuestas.add(e);
+                    break;
+                case 2:
+                    System.out.println("Inserta el nom del ficher");
+                    String nom_ficher = scanner.next();
+                    e = new Encuesta(nom_ficher);
                     ll_encuestas.add(e);
                     break;
                 case 3:

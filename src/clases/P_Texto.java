@@ -13,8 +13,9 @@ public class P_Texto extends Pregunta {
     public P_Texto() {
     }
 
-    public P_Texto(String enunciado) {
+    public P_Texto(String enunciado, int max_length) {
         super(enunciado);
+        this.max_length = max_length;
     }
 
     public int getMax_length() {

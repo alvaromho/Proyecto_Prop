@@ -1,13 +1,14 @@
 package clases;
 
 import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
-
 import java.io.IOException;
 import java.util.*;
+import java.io.*;
 
 /**
  *   Clase Encuesta
  */
+
 
 
 public class Encuesta {
@@ -22,6 +23,7 @@ public class Encuesta {
 
 
     public Encuesta() {
+        //Crea una encuesta interactivamente
         this.id = id_count;
         ++id_count;
         System.out.println("Introduce un nombre para la encuesta:");
@@ -71,18 +73,77 @@ public class Encuesta {
                     break;
                 default:
                     System.out.println("Opcio no vàlida");
+                    break;
             }
             System.out.println("Seguent Pregunta a introduir: ");
             tipus_pregunta = Integer.parseInt(scanner.next());
         }
     }
 
-    public Encuesta(String name, Calendar data,  ArrayList<Pregunta> llpreguntes) {
+    public Encuesta(String nom_ficher) throws IOException {
+        //Dado un txt importa una encuesta
+        FileReader fr = new FileReader(nom_ficher);
+        BufferedReader bf = new BufferedReader(fr);
+        /*String sCadena;
+        while ((sCadena = bf.readLine())!=null) {
+            System.out.println(sCadena);
+        }*/
+
         this.id = id_count;
         ++id_count;
-        this.name = name;
-        this.creation_date = data;
-        this.ll_preguntes = llpreguntes;
+        //Leemos el nombre de la encuesta
+        //Scanner scanner = new Scanner(System.in);
+        this.name = bf.readLine();
+        this.creation_date = Calendar.getInstance();
+        //Leemos el tipo de pregunta que se quiere crear
+        int tipus_pregunta = Integer.parseInt(bf.readLine());
+        while (tipus_pregunta != 0) {
+            String enunciado = bf.readLine();
+            ArrayList<String> opciones;
+            switch (tipus_pregunta) {
+                case 1:
+                    opciones = new ArrayList<>();
+                    int n = Integer.parseInt(bf.readLine());
+                    for (int i = 0; i < n; ++i) {
+                        opciones.add(bf.readLine());
+                    }
+                    P_Gradual pg = new P_Gradual(enunciado, opciones);
+                    ll_preguntes.add(pg);
+                    break;
+                case 2:
+                    //Leemos el minimo i el maximo de alternativas a escoger
+                    int min_alternativas = Integer.parseInt(bf.readLine());
+                    int max_alternativas = Integer.parseInt(bf.readLine());
+                    opciones = new ArrayList<>();
+                    //Leemos el numero de opciones
+                    int m = Integer.parseInt(bf.readLine());
+                    for (int i = 0; i < m; ++i) {
+                        //Leemos una opcion
+                        opciones.add(bf.readLine());
+                    }
+                    P_Multiopcion pm = new P_Multiopcion(enunciado, min_alternativas, max_alternativas, opciones);
+                    ll_preguntes.add(pm);
+                    break;
+
+                case 3:
+                    int min = Integer.parseInt(bf.readLine());
+                    int max = Integer.parseInt(bf.readLine());
+                    P_Numerico pn = new P_Numerico(enunciado, min, max);
+                    ll_preguntes.add(pn);
+                    break;
+
+                case 4:
+                    int max_length = Integer.parseInt(bf.readLine());
+                    P_Texto pt = new P_Texto(enunciado, max_length);
+                    ll_preguntes.add(pt);
+                    break;
+                default:
+                    System.out.println("Opcio no vàlida");
+                    break;
+            }
+            System.out.println("Seguent Pregunta a introduir: ");
+            tipus_pregunta = Integer.parseInt(bf.readLine());
+        }
     }
 
     public int getId() {    //GetterId
