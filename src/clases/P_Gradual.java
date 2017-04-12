@@ -12,7 +12,7 @@ public class P_Gradual extends Pregunta {
     protected ArrayList<String> enunciado_opcion = new ArrayList<>();
 
     public P_Gradual() {
-        System.out.println("Introduce le numero de opciones que quiere poner");
+        System.out.println("Introduce el numero de opciones que quiere poner");
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         System.out.println("Introduce las posibles respuestas graduales: ");

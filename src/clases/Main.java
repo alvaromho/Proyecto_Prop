@@ -1,7 +1,6 @@
 package clases;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 
 public class Main {
@@ -24,28 +23,45 @@ public class Main {
         int opcio = Integer.parseInt(scanner.next());
         while(opcio != 0) {
             Encuesta e;
+            String nom_ficher;
+            int respondemos;
             switch (opcio) {
                 case 1:
+                    //Crear Encuesta Interactivo
                     e = new Encuesta();
                     ll_encuestas.add(e);
                     break;
                 case 2:
-                    System.out.println("Inserta el nom del ficher");
-                    String nom_ficher = scanner.next();
+                    //Importar Encuesta
+                    System.out.println("Inserta el nombre del fichero");
+                    nom_ficher = scanner.next();
                     e = new Encuesta(nom_ficher);
                     ll_encuestas.add(e);
                     break;
                 case 3:
-                    e = ll_encuestas.get(0);
-                    e.responder();
+                    //Responder Encuesta Interactivo
+                    System.out.println("Inserta el id de l'encuesta que quiere responder");
+                    respondemos = Integer.parseInt(scanner.next());
+                    e = ll_encuestas.get(respondemos);
+                    e.responder_interactivo();
                     break;
+                case 4:
+                    //Importar Respuesta
+                    System.out.println("Inserta el nombre del fichero");
+                    nom_ficher = scanner.next();
+                    FileReader fr = new FileReader(nom_ficher);
+                    BufferedReader bf = new BufferedReader(fr);
+                    respondemos = Integer.parseInt(bf.readLine());
+                    e = ll_encuestas.get(respondemos);
+                    e.responder_importar(nom_ficher);
 
                 default:
-                    System.out.println("Opció no vàlida");
+                    System.out.println("Opcion no valida");
                     break;
             }
             opcio = Integer.parseInt(scanner.next());
         }
+
 
 
         Analisis a = new Analisis("analisis a",2);
@@ -59,9 +75,13 @@ public class Main {
             System.out.println(e);
         }
 
+
+
         c.print_nombres();
 
     }
+
+
 
 
 }

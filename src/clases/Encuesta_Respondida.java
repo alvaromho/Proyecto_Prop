@@ -1,11 +1,12 @@
 package clases;
+import java.io.*;
 import java.io.IOException;
 import java.util.*;
 
 /**
- * 
+ * Pol Moya Betriu
  */
-public class Encuesta_Respondida {
+    public class Encuesta_Respondida {
 
 
     private int id;
@@ -68,26 +69,34 @@ public class Encuesta_Respondida {
         this.ll_respuesta = ll_respuesta;
     }
 
-    public void añadir_respuesta(Pregunta p){
+    public Encuesta getEncuesta() {
+        return encuesta;
+    }
+
+    public void setEncuesta(Encuesta encuesta) {
+        this.encuesta = encuesta;
+    }
+
+    public void añadir_respuesta_interactivo(Pregunta p){
+        System.out.println(p.getEnunciado());
         if (p instanceof P_Gradual) {
             System.out.println("Gradual");
-            R_Gradual rg = new R_Gradual();
+            R_Gradual rg = new R_Gradual((P_Gradual) p);
             this.ll_respuesta.add(rg);
         }
         else if (p instanceof P_Multiopcion) {
             System.out.println("MultiOpcion");
-            R_Multiopcion rm = new R_Multiopcion();
+            R_Multiopcion rm = new R_Multiopcion((P_Multiopcion) p);
             this.ll_respuesta.add(rm);
         }
         else if (p instanceof P_Numerico) {
             System.out.println("Numerico");
-            R_Numerico rn = new R_Numerico();
+            R_Numerico rn = new R_Numerico((P_Numerico) p);
             this.ll_respuesta.add(rn);
         }
         else if (p instanceof P_Texto) {
             System.out.println("Texto");
-            System.out.println(p.getEnunciado());
-            R_Texto rt = new R_Texto();
+            R_Texto rt = new R_Texto((P_Texto) p);
             this.ll_respuesta.add(rt);
         }
         else System.out.println("Normal");
@@ -110,6 +119,51 @@ public class Encuesta_Respondida {
     public void añadir_respuesta(P_Texto p) {
         System.out.println("Texto");
     }*/
+
+    public void añadir_respuesta_importar(Pregunta p, String nom_ficher) throws IOException {
+        FileReader fr = new FileReader(nom_ficher);
+        BufferedReader bf = new BufferedReader(fr);
+        int inutil = Integer.parseInt(bf.readLine());
+        if (p instanceof P_Gradual) {
+            //System.out.println("Gradual");
+            int valor = Integer.parseInt(bf.readLine());
+            boolean nc = false;
+            if (valor == -1) nc = true;
+            R_Gradual rg = new R_Gradual((P_Gradual) p, nc, valor);
+            this.ll_respuesta.add(rg);
+        }
+        else if (p instanceof P_Multiopcion) {
+            //System.out.println("MultiOpcion");
+            boolean nc = true;
+            int n = ((P_Multiopcion) p).getSizeEncunciado_Opcion();
+            boolean[] respuesta_bool = new boolean[n];
+            for (int i = 0; i < n; ++i) {
+                boolean aux = (Integer.parseInt(bf.readLine()) == 1);
+                respuesta_bool[i] = aux;
+                if (aux) nc = false;
+            }
+            R_Multiopcion rm = new R_Multiopcion((P_Multiopcion) p, nc, respuesta_bool);
+            this.ll_respuesta.add(rm);
+        }
+        else if (p instanceof P_Numerico) {
+            //System.out.println("Numerico");
+            int valor = Integer.parseInt(bf.readLine());
+            boolean nc = false;
+            if (valor == -1) nc = true;
+            R_Numerico rn = new R_Numerico((P_Numerico) p, nc, valor);
+            this.ll_respuesta.add(rn);
+        }
+        else if (p instanceof P_Texto) {
+            //System.out.println("Texto");
+            String texto = bf.readLine();
+            boolean nc = false;
+            if (texto == "-") nc = true;
+            R_Texto rt = new R_Texto((P_Texto) p, nc, texto);
+            this.ll_respuesta.add(rt);
+        }
+        else System.out.println("Normal");
+        System.out.println(p.getEnunciado());
+    }
 
 
     public void modificar_respuesta(int index, Respuesta respuesta_new) {

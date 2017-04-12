@@ -30,10 +30,6 @@ public class Encuesta {
         Scanner scanner = new Scanner(System.in);
         this.name = scanner.next();
         this.creation_date = Calendar.getInstance();
-        /*int n = System.in.read();
-        for (int i = 0; i < n; ++i) {
-    ¡
-        }*/
         System.out.println("Introduce un numero para escoger el tipo de pregunta que quieres crear: ");
         System.out.println("1: Tipo Gradual");
         System.out.println("2: Tipo Multiopcion");
@@ -46,16 +42,6 @@ public class Encuesta {
                 case 1:
                     P_Gradual pg = new P_Gradual();
                     ll_preguntes.add(pg);
-                  /*  p.id = p.id_count;
-                    p.enunciado = scanner.next();
-                    p.no_sabe = (System.in.read() == 1);
-                    System.out.println("Inserta el nombre de opcions que vols tenir:");
-                    int n = System.in.read();
-                    for (int i = 0; i < n; ++i) {
-                        String s = scanner.next();
-                        p.enunciado_opcion.add(s);
-                    } */
-
                     break;
                 case 2:
                     P_Multiopcion pm = new P_Multiopcion();
@@ -88,7 +74,6 @@ public class Encuesta {
         while ((sCadena = bf.readLine())!=null) {
             System.out.println(sCadena);
         }*/
-
         this.id = id_count;
         ++id_count;
         //Leemos el nombre de la encuesta
@@ -126,6 +111,7 @@ public class Encuesta {
                     break;
 
                 case 3:
+                    //Leemos valor minimo y maximo posible
                     int min = Integer.parseInt(bf.readLine());
                     int max = Integer.parseInt(bf.readLine());
                     P_Numerico pn = new P_Numerico(enunciado, min, max);
@@ -133,6 +119,7 @@ public class Encuesta {
                     break;
 
                 case 4:
+                    //Leemos el max de chars k tendra la respuesta
                     int max_length = Integer.parseInt(bf.readLine());
                     P_Texto pt = new P_Texto(enunciado, max_length);
                     ll_preguntes.add(pt);
@@ -142,8 +129,11 @@ public class Encuesta {
                     break;
             }
             System.out.println("Seguent Pregunta a introduir: ");
+            //Volvemos a leer el tipo de pregunta que se quiere crear
             tipus_pregunta = Integer.parseInt(bf.readLine());
         }
+        //Cerramos el fichero
+        bf.close();
     }
 
     public int getId() {    //GetterId
@@ -174,6 +164,13 @@ public class Encuesta {
         this.ll_preguntes = llpreguntes;
     }
 
+    public ArrayList<Encuesta_Respondida> getLl_encuestas_respondidas() {
+        return ll_encuestas_respondidas;
+    }
+
+    public void setLl_encuestas_respondidas(ArrayList<Encuesta_Respondida> ll_encuestas_respondidas) {
+        this.ll_encuestas_respondidas = ll_encuestas_respondidas;
+    }
 
     public boolean eliminar_pregunta(Pregunta pregunta) {
     //Elimina una pregunta de la encuesta, devuelve true si la elimina, falso si no contiene la pregunta.
@@ -208,10 +205,18 @@ public class Encuesta {
         return ll_preguntes.get(id_encuesta);
     }
 
-    public void responder(){
+    public void responder_interactivo() {
         Encuesta_Respondida er = new Encuesta_Respondida(this);
         for (Pregunta p : ll_preguntes) {
-            er.añadir_respuesta(p);
+            er.añadir_respuesta_interactivo(p);
+        }
+        ll_encuestas_respondidas.add(er);
+    }
+
+    public void responder_importar(String nom_ficher) throws IOException {
+        Encuesta_Respondida er = new Encuesta_Respondida(this);
+        for (Pregunta p : ll_preguntes) {
+            er.añadir_respuesta_importar(p, nom_ficher);
         }
         ll_encuestas_respondidas.add(er);
     }
