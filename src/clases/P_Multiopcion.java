@@ -15,8 +15,8 @@ public class P_Multiopcion extends Pregunta {
     public P_Multiopcion() {
     }
 
-    public P_Multiopcion(int id_pregunta, String enunciado, boolean no_sabe) {
-        super(id_pregunta, enunciado, no_sabe);
+    public P_Multiopcion(String enunciado) {
+        super(enunciado);
     }
 
     public ArrayList<String> getEnunciado_opcion() {

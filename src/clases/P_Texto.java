@@ -5,7 +5,7 @@ package clases;
  */
 public class P_Texto extends Pregunta {
 
-    /**
+    /**1
      * Atributos
      */
     public int max_length;
@@ -13,8 +13,8 @@ public class P_Texto extends Pregunta {
     public P_Texto() {
     }
 
-    public P_Texto(int id_pregunta, String enunciado, boolean no_sabe) {
-        super(id_pregunta, enunciado, no_sabe);
+    public P_Texto(String enunciado) {
+        super(enunciado);
     }
 
     public int getMax_length() {
