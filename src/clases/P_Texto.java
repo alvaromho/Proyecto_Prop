@@ -11,6 +11,10 @@ public class P_Texto extends Pregunta {
     public int max_length;
 
     public P_Texto() {
+        System.out.println("Introduce el tamaño maximo del texto");
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        this.max_length = n;
     }
 
     public P_Texto(String enunciado, int max_length) {
