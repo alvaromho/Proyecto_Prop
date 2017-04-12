@@ -19,9 +19,9 @@ public class Encuesta_Respondida {
     public Encuesta_Respondida(Encuesta e) {
         //Se crea una Encuesta_Respondida interactivamente
         Scanner scanner = new Scanner(System.in);
-        this.encuesta = e;
         this.id = id_count;
         ++id_count;
+        this.encuesta = e;
         System.out.println("Introduce tu nombre:");
         this.name = scanner.next();
         this.creation_date = Calendar.getInstance();
@@ -69,14 +69,29 @@ public class Encuesta_Respondida {
     }
 
     public void añadir_respuesta(Pregunta p){
-        if (p instanceof P_Gradual) System.out.println("Gradual");
-        else if (p instanceof P_Multiopcion) System.out.println("MultiOpcion");
-        else if (p instanceof P_Numerico) System.out.println("Numerico");
-        else if (p instanceof P_Texto) System.out.println("Texto");
+        if (p instanceof P_Gradual) {
+            System.out.println("Gradual");
+            R_Gradual rg = new R_Gradual();
+            this.ll_respuesta.add(rg);
+        }
+        else if (p instanceof P_Multiopcion) {
+            System.out.println("MultiOpcion");
+            R_Multiopcion rm = new R_Multiopcion();
+            this.ll_respuesta.add(rm);
+        }
+        else if (p instanceof P_Numerico) {
+            System.out.println("Numerico");
+            R_Numerico rn = new R_Numerico();
+            this.ll_respuesta.add(rn);
+        }
+        else if (p instanceof P_Texto) {
+            System.out.println("Texto");
+            System.out.println(p.getEnunciado());
+            R_Texto rt = new R_Texto();
+            this.ll_respuesta.add(rt);
+        }
         else System.out.println("Normal");
-
-
-
+        System.out.println(p.getEnunciado());
     }
 
     /*

@@ -1,24 +1,29 @@
 package clases;
 
 
+import java.util.Scanner;
+
 public class Pregunta {
 
     protected int id;
     protected String enunciado;
-    protected boolean no_sabe;
 
     protected static int id_count = 1;
 
+    //Constructor
     public Pregunta() {
+        this.id = id_count;
+        ++id_count;
+        System.out.println("Introduce el enunciado para la Pregunta:");
+        Scanner scanner = new Scanner(System.in);
+        this.enunciado = scanner.next();
     }
 
     //Constructor
-    public Pregunta(int id_pregunta, String enunciado, boolean no_sabe) {
-        this.id = id_pregunta;
+    public Pregunta(String enunciado) {
+        this.id = id_count;
+        ++id_count;
         this.enunciado = enunciado;
-        this.no_sabe = no_sabe;
-
-
     }
 
     public int getId_pregunta() {
@@ -37,11 +42,4 @@ public class Pregunta {
         this.enunciado = enunciado;
     }
 
-    public boolean isNo_sabe() {
-        return no_sabe;
-    }
-
-    public void setNo_sabe(boolean no_sabe) {
-        this.no_sabe = no_sabe;
-    }
 }

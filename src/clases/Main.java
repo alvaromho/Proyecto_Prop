@@ -11,6 +11,14 @@ public class Main {
 
         ArrayList<Encuesta> ll_encuestas = new ArrayList<Encuesta>();
 
+
+        System.out.println("Introduce un numero para escoger la opción que quiere realizar:");
+        System.out.println("1: Crear Encuesta interactivo");
+        System.out.println("2: Importar Encuesta");
+        System.out.println("3: Responder Encuesta interactivo");
+        System.out.println("4: Importar respuesta de una encuesta");
+        System.out.println("5:");
+        System.out.println("0: Fi");
         Scanner scanner = new Scanner(System.in);
         int opcio = Integer.parseInt(scanner.next());
         while(opcio != 0) {
@@ -20,13 +28,13 @@ public class Main {
                     e = new Encuesta();
                     ll_encuestas.add(e);
                     break;
-                case 2:
+                case 3:
                     e = ll_encuestas.get(0);
                     e.responder();
                     break;
 
                 default:
-
+                    System.out.println("Opció no vàlida");
                     break;
             }
             opcio = Integer.parseInt(scanner.next());
