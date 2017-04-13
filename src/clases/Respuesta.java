@@ -17,13 +17,12 @@ public class Respuesta {
     protected boolean no_contesta;
 
     public Respuesta() {
-        this.id = id_siguiente;
-        id_siguiente++;
+        this.setId();
+
     }
 
     public Respuesta(boolean no_contesta) {
-        this.id = id_siguiente;
-        id_siguiente++;
+        this.setId();
         this.no_contesta = no_contesta;
     }
 
@@ -31,9 +30,7 @@ public class Respuesta {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId() { this.id = id_siguiente++;}
 
     public boolean isNo_contesta() {
         return no_contesta;
@@ -46,8 +43,7 @@ public class Respuesta {
     /*
     * Se define la funcion distancia y getValor y se sobre-escriben en cada subclase
     */
-    public float distancia(Respuesta respuesta){
-        return 0;
-    }
+    public float distancia(Respuesta respuesta){return 0;}
+
     public Object getValor(){return null;}
 }

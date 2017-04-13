@@ -2,6 +2,7 @@ package clases;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *  Clase responsable de realizar y manejar los analisis realizados sobre una muestra de encuestas respondidas
@@ -82,6 +83,39 @@ public class Analisis {
         for(String nombre : lista_nombres) {
             System.out.println(nombre);
         }
+    }
+
+    public float distancia(Encuesta_Respondida encuesta_respondida_1, Encuesta_Respondida encuesta_respondida_2){
+
+        // Comprobar que ambas encuestas_respondidas sean de la misma encuesta
+        if (encuesta_respondida_1.getEncuesta().equals(encuesta_respondida_2.getEncuesta()) == false) {
+            System.out.println("Las encuestas_respondidas no pertenecen a la misma encuesta.");
+            return -1;
+        }
+
+        float sumatoria = 0, distancia = 0;
+        int numero_de_preguntas = encuesta_respondida_2.getEncuesta().getLlista_preguntes().size();
+
+        // por cada pregunta calcular la distancia local
+        float arreglo_distancias[] = new float[numero_de_preguntas];
+
+
+        Iterator<Respuesta> i1 = encuesta_respondida_1.getLl_respuesta().iterator();
+        Iterator<Respuesta> i2 = encuesta_respondida_2.getLl_respuesta().iterator();
+
+
+        while (i1.hasNext() && i2.hasNext()){
+            Respuesta r1 = i1.next();
+            Respuesta r2 = i2.next();
+
+            float d = r1.distancia(r2);
+            System.out.println(d);
+            sumatoria += d;
+        }
+
+        distancia = sumatoria/(float)numero_de_preguntas;
+        System.out.println(numero_de_preguntas);
+        return distancia;
     }
 
 
