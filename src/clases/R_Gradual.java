@@ -21,7 +21,7 @@ public class R_Gradual extends Respuesta{
         System.out.println("Enunciado:\n\t"+ this.pregunta.getEnunciado());
         System.out.println("Ingrese una opción ( 0 es igual a no contestar):");
         for (String opcion : opciones){
-            System.out.println( "("+i+") - "+ opcion);
+            System.out.println( "("+ ++i +") - "+ opcion);
         }
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();

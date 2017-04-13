@@ -20,12 +20,12 @@ public class R_Numerico extends Respuesta {
 
 
         System.out.println("Enunciado:\n\t"+ this.pregunta.getEnunciado());
-        System.out.println("Ingrese un número entre ["+min+ " y "+max+"] ( 0es igual a no contestar):");
+        System.out.println("Ingrese un número entre ["+min+ " y "+max+"] ( -1 es igual a no contestar):");
 
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
 
-        if (n == 0){
+        if (n == -1){
             this.valor = 0;
             super.setNo_contesta(true);
         } else {

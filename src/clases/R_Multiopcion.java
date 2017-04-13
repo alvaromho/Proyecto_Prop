@@ -26,20 +26,26 @@ public class R_Multiopcion extends Respuesta {
 
         Scanner scanner = new Scanner(System.in);
 
-        boolean cantidad_de_alternativas_correcta = false;
+
 
 
         ArrayList<String> alternativas = pregunta.getEnunciado_opcion();
         String alternativas_escogidas = "";
 
+        /*
+        *   Imprimir enunciado e instrucciones
+        */
         System.out.println("Enunciado:\n\t"+ this.pregunta.getEnunciado());
-
-        //System.out.println("Ingrese las alternativas a escoger. Debe elegir entre "+min+" y "+max+" alternativas.");
-
         for (String opcion : alternativas){
             System.out.println( "("+ ++i +") - "+ opcion);
         }
-        while (cantidad_de_alternativas_correcta) {
+
+
+        /*
+            Pedir al usuario que elija una cantidad de alternativas a elegir
+         */
+        boolean cantidad_de_alternativas_correcta = false;
+        do {
 
             System.out.println("¿Cuantas alternativas desea elegir? Debe elegir entre " + min + " y " + max + ".");
 
@@ -49,27 +55,36 @@ public class R_Multiopcion extends Respuesta {
             } else {
                 cantidad_de_alternativas_correcta = true;
             }
-        }
-         if (numero_de_alternativas != 0) {
-             System.out.println("Ingrese las alternativas a escoger.");
-             for (String opcion : alternativas) {
-                 System.out.println("(" + ++i + ") - " + opcion);
-             }
+        } while (!cantidad_de_alternativas_correcta);
 
-             System.out.println("Ingresar numero de alternativa a elegir.");
+
+        i = 0;
+
+        /*
+
+         */
+        System.out.println("Ingresar alternativas.");
+        // Imprimir alternativas
+        for (String opcion : alternativas) {
+            System.out.println("(" + ++i + ") - " + opcion);
+        }
+
+        if (numero_de_alternativas != 0) {
 
              for (i = 1; i <= numero_de_alternativas; i++) {
 
                  boolean opcion_valida = false;
                  do {
 
-                     System.out.println("Eleccion numero " + ++i + ":");
+                     System.out.println("Eleccion numero " + i + ":");
 
                      int opcion = scanner.nextInt();
-                     if (opcion < 0 || opcion > alternativas.size() || alternativas_escogidas.contains("" + opcion + "")) {
+                     if (opcion > 0 && opcion <= alternativas.size() && !alternativas_escogidas.contains(""+opcion)) {
                          opcion_valida = true;
+                         alternativas_escogidas += opcion + " ";
+                     } else {
+                         System.out.println("Intente nuevamente.");
                      }
-                     alternativas_escogidas += opcion + " ";
                  } while (!opcion_valida);
              }
 
@@ -96,6 +111,7 @@ public class R_Multiopcion extends Respuesta {
         super(no_contesta);
         this.pregunta = pregunta;
         String string_valor = "";
+
         for (int i = 0 ; i< valor.length ; i++ ){
             if (valor[i] == true){
                 string_valor += "1";

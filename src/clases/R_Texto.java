@@ -16,20 +16,30 @@ public class R_Texto extends Respuesta {
         super();
         this.pregunta = pregunta;
 
-
         System.out.println("Enunciado:\n\t"+ this.pregunta.getEnunciado());
         System.out.println("Ingrese su respuesta: ( '-'es igual a no contestar):");
 
+        boolean input_correcto = false;
         Scanner scanner = new Scanner(System.in);
-        String n = scanner.next();
+        do {
+            String n = scanner.next();
 
-        if (n.compareTo("-") == 0){
-            this.valor = "-";
-            super.setNo_contesta(true);
-        } else {
-            this.valor = n;
-            super.setNo_contesta(false);
-        }
+            if (n.length() <= pregunta.getMax_length()) {
+
+                input_correcto = true;
+                if (n.compareTo("-") == 0) {
+                    this.valor = "-";
+                    super.setNo_contesta(true);
+                } else {
+                    this.valor = n;
+                    super.setNo_contesta(false);
+                }
+            }
+            else {
+                System.out.println("Error, largo de respuesta excede el maximo de "+ pregunta.getMax_length() +" caracteres." );
+            }
+
+        }while(!input_correcto);
 
     }
 
