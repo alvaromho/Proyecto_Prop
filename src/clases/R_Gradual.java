@@ -56,6 +56,20 @@ public class R_Gradual extends Respuesta{
 
     @Override
     public float distancia(Respuesta respuesta) {
-        return super.distancia(respuesta);
+
+        // conseguir  primer valor (this)
+        int valor_1  = (int) this.getValor();
+        // conseguir segundo valor
+        int valor_2 = (int) respuesta.getValor();
+
+        // conseguir min y max
+        int numero_de_opciones= this.pregunta.enunciado_opcion.size();
+
+        // formula de distancia
+
+
+        float distancia = 0;
+        distancia = (float) Math.abs(valor_1 - valor_2) /(float)(numero_de_opciones -1);
+        return distancia;
     }
 }

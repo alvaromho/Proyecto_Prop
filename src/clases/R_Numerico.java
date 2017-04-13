@@ -51,8 +51,25 @@ public class R_Numerico extends Respuesta {
 
     public void setPregunta(P_Numerico pregunta) {this.pregunta = pregunta;}
 
+    /*
+            Calculo de distancia para respuestas de tipo númerico
+     */
     @Override
     public float distancia(Respuesta respuesta) {
-        return super.distancia(respuesta);
+        // conseguir  primer valor (this)
+        int valor_1  = (int) this.getValor();
+        // conseguir segundo valor
+        int valor_2 = (int) respuesta.getValor();
+
+        // conseguir min y max
+        int min = this.pregunta.getMin();
+        int max = this.pregunta.getMax();
+
+        // formula de distancia
+
+
+        float distancia = 0;
+        distancia = (float) Math.abs(valor_1 - valor_2) /(float)(max - min);
+        return distancia;
     }
 }
