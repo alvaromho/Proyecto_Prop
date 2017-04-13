@@ -27,8 +27,6 @@ public class R_Multiopcion extends Respuesta {
         Scanner scanner = new Scanner(System.in);
 
 
-
-
         ArrayList<String> alternativas = pregunta.getEnunciado_opcion();
         String alternativas_escogidas = "";
 
@@ -121,6 +119,8 @@ public class R_Multiopcion extends Respuesta {
         }
         this.valor = string_valor;
     }
+
+
     @Override
     public Object getValor() {return valor;}
     public void setValor(String valor) {this.valor = valor;}
@@ -129,8 +129,32 @@ public class R_Multiopcion extends Respuesta {
 
     public void setPregunta(P_Multiopcion pregunta) {this.pregunta = pregunta;}
 
+
     @Override
     public float distancia(Respuesta respuesta) {
-        return super.distancia(respuesta);
+        // conseguir  primer valor (this)
+        String valor_1 = (String) this.getValor();
+        // conseguir segundo valor
+        String valor_2 = (String) respuesta.getValor();
+        int numero_de_alternativas_posibles = this.pregunta.getMin_alternativas();
+
+        float distancia = 0;
+
+
+        // calcular # respuesta iguales
+        int interseccion_conjuntos_iguales = 0;
+        int union_conjuntos_respuesta = 0;
+        for (int i = 0; i < valor_1.length(); i++) {
+            if (valor_1.toCharArray()[i] == valor_2.toCharArray()[i] && valor_1.toCharArray()[i] == '1') {
+                interseccion_conjuntos_iguales++;
+            }
+            if (valor_1.toCharArray()[i] == '1' || valor_2.toCharArray()[i] == '1') {
+                union_conjuntos_respuesta++;
+            }
+        }
+
+        distancia = (float) 1 - (float) (interseccion_conjuntos_iguales) / (float) (union_conjuntos_respuesta);
+
+        return distancia;
     }
 }
