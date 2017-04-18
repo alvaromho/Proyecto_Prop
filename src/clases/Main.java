@@ -115,24 +115,25 @@ public class Main {
 
         Analisis a = new Analisis("analisis",1);
 
-        ArrayList<Respuesta> array_respuesta_1= new ArrayList<Respuesta>();
-        ArrayList<Respuesta> array_respuesta_2= new ArrayList<Respuesta>();
+        ArrayList<Respuesta> array_respuesta_1= new ArrayList<>();
+        ArrayList<Respuesta> array_respuesta_2= new ArrayList<>();
+        ArrayList<Respuesta> array_respuesta_3= new ArrayList<>();
 
-        ArrayList<Encuesta_Respondida> ler1 = new ArrayList<Encuesta_Respondida>();
-        ArrayList<Pregunta> array_pregunta_1 = new ArrayList<Pregunta>();
+        ArrayList<Encuesta_Respondida> ler1 = new ArrayList<>();
+        ArrayList<Pregunta> array_pregunta_1 = new ArrayList<>();
 
-        ArrayList<String> opciones = new ArrayList<String>();
+        ArrayList<String> opciones = new ArrayList<>();
         opciones.add("bien");
         opciones.add("medio");
         opciones.add("mal");
-        ArrayList<String> alternativas = new ArrayList<String>();
-        opciones.add("a");
-        opciones.add("b");
-        opciones.add("c");
-        opciones.add("d");
-        opciones.add("e");
-        boolean [] bool_array1 = {true,false, false, false, false};
-        boolean [] bool_array2 = {true,false, false, false, false};
+        ArrayList<String> alternativas = new ArrayList<>();
+        alternativas.add("a");
+        alternativas.add("b");
+        alternativas.add("c");
+        alternativas.add("d");
+        alternativas.add("e");
+        boolean [] bool_array1 = {true,true, false, false, false};
+        boolean [] bool_array2 = {false,false, true, true, false};
 
 
         /*
@@ -142,7 +143,7 @@ public class Main {
         P_Numerico p1 = new P_Numerico("enunciado 1", 0, 10);
         P_Numerico p2 = new P_Numerico("enunciado 2", 0, 10);
         P_Gradual p3 = new P_Gradual("enunciado 3",opciones);
-        P_Multiopcion p4 = new P_Multiopcion("enunciado 3",1,1,alternativas);
+        P_Multiopcion p4 = new P_Multiopcion("enunciado 3",1,3,alternativas);
         P_Texto p5 = new P_Texto("enunciado 5", 50);
 
 
@@ -154,30 +155,37 @@ public class Main {
         array_pregunta_1.add(p5);
 
 
-        array_respuesta_1.add(new R_Numerico(p1, false, 1));
+        array_respuesta_1.add(new R_Numerico(p1, false, 2));
         array_respuesta_2.add(new R_Numerico(p1, false, 10));
+        array_respuesta_3.add(new R_Numerico(p1, false, 8));
 
         array_respuesta_1.add(new R_Numerico(p2, false, 2));
         array_respuesta_2.add(new R_Numerico(p2, false, 8));
+        array_respuesta_3.add(new R_Numerico(p2, false, 3));
 
         array_respuesta_1.add(new R_Gradual(p3, false, 1));
-        array_respuesta_2.add(new R_Gradual(p3, false, 2));
+        array_respuesta_2.add(new R_Gradual(p3, false, 3));
+        array_respuesta_3.add(new R_Gradual(p3, false, 2));
 
         array_respuesta_1.add(new R_Multiopcion(p4, false, bool_array1));
         array_respuesta_2.add(new R_Multiopcion(p4, false, bool_array2));
+        array_respuesta_3.add(new R_Multiopcion(p4, false, bool_array2));
 
-        array_respuesta_1.add(new R_Texto(p5, false, "hola"));
-        array_respuesta_2.add(new R_Texto(p5, false, "hola chao"));
+        array_respuesta_1.add(new R_Texto(p5, false, "hola como estas"));
+        array_respuesta_2.add(new R_Texto(p5, false, "hola como estas"));
+        array_respuesta_3.add(new R_Texto(p5, false, "tal tal tal "));
 
 
 
         Encuesta e = new Encuesta(1,"encuesta",Calendar.getInstance(),array_pregunta_1,ler1);
 
-        Encuesta_Respondida er1 = new Encuesta_Respondida(e,"asd",Calendar.getInstance(),array_respuesta_1);
-        Encuesta_Respondida er2 = new Encuesta_Respondida(e,"asd2",Calendar.getInstance(),array_respuesta_2);
+        Encuesta_Respondida er1 = new Encuesta_Respondida(e,"E_R1",Calendar.getInstance(),array_respuesta_1);
+        Encuesta_Respondida er2 = new Encuesta_Respondida(e,"E_R2",Calendar.getInstance(),array_respuesta_2);
+        Encuesta_Respondida er3 = new Encuesta_Respondida(e,"E_R3",Calendar.getInstance(),array_respuesta_3);
 
         ler1.add(er1);
         ler1.add(er2);
+        ler1.add(er3);
 
         System.out.println(a.distancia(er1,er2));
 
@@ -185,20 +193,6 @@ public class Main {
 
         Cluster c = new Cluster(ler1);
         c.Calcular_Centride(ler1);
-
-
-
-
-        /*P_Texto p = new P_Texto("enunciado", 50);
-        R_Texto r1 = new R_Texto(p,false, "hola");
-        R_Texto r2 = new R_Texto(p,false, "respuesta2");
-        R_Texto r3 = new R_Texto(p,false, "halos");
-        R_Texto r4 = new R_Texto(p,false, "");*/
-
-
-
-
-
 
 
     }

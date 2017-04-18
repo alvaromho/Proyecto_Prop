@@ -109,12 +109,12 @@ public class Analisis {
             Respuesta r2 = i2.next();
 
             float d = r1.distancia(r2);
-            System.out.println(d);
+//            System.out.println(d);
             sumatoria += d;
         }
 
         distancia = sumatoria/(float)numero_de_preguntas;
-        System.out.println(numero_de_preguntas);
+        //System.out.println(numero_de_preguntas);
         return distancia;
     }
 

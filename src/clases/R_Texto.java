@@ -1,6 +1,8 @@
 package clases;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -73,7 +75,6 @@ public class R_Texto extends Respuesta {
 
     @Override
     public float distancia(Respuesta respuesta) {
-
         String valor_1 =this.valor;
         String valor_2 = (String) respuesta.getValor();
 
@@ -122,25 +123,53 @@ public class R_Texto extends Respuesta {
     @Override
     public void Calcular_Centroide (ArrayList<Encuesta_Respondida> muestra, int index_respuesta) {
 
-        //Crear diccionario
-        ArrayList<String> diccionario = new ArrayList<>();
-        for (Encuesta_Respondida encuesta_respondida : muestra){
-            agregar_al_diccionario(diccionario,(String)encuesta_respondida.getLl_respuesta().get(index_respuesta).getValor());
+        // 1- crear arraylist solo con una instancia de cada palabra con sentido semantico //TODO SENTIDO SEMANTICO
+        ArrayList<String> respuestas = new ArrayList<>();
+        ArrayList<String> respuestas_filtradas = new ArrayList<>();
+
+        for (Encuesta_Respondida encuesta_respondida : muestra) {
+
+            String valor = (String) encuesta_respondida.getLl_respuesta().get(index_respuesta).getValor();
+            String[] valores = valor.split("\\s+");
+
+            for (String s : valores) {
+                respuestas.add(s);
+            }
         }
-        for (String s : diccionario)
-            System.out.println(s);
+        for (String s : respuestas) {
+            if (!respuestas_filtradas.contains(s)) {
+//                System.out.println("agregado");
+                respuestas_filtradas.add(s);
+            }
+        }
 
+        // 2 - crear int[] para almacenar la frecuencia de cada posible respuesta
+        int[] frecuencias = new int[respuestas_filtradas.size()];
+
+
+        for (int i = 0; i < respuestas_filtradas.size(); i++) {
+            frecuencias[i] = Collections.frequency(respuestas, respuestas_filtradas.get(i));
+//            System.out.println("f: "+frecuencias[i]);
+        }
+        // 3 - Encontrar maximo (frecuencia)
+        int index_frecuencia_maxima = max_int_de_lista(frecuencias);
+        // 5 - retornar valor con el mayor numero de frecuencias
+//        System.out.println("index " + index_frecuencia_maxima);
+//        System.out.println("palabra " + respuestas_filtradas.get(index_frecuencia_maxima));
+        this.setValor(respuestas_filtradas.get(index_frecuencia_maxima));
 
     }
-    // Agrega palabras al diccionario
-    public void agregar_al_diccionario(ArrayList<String> diccionario, String string){
-        for (String s : string.split("\\s+"))
-            if (!diccionario.contains(s)) diccionario.add(s);
-    }
 
-    // borra caracteres especiales y cambia las mayusculas por minusculas
-    public String limpiar_string(String string){
-        return  string.replaceAll("[^a-zA-Z]+"," ").toLowerCase();
-    }
 
+    public static int max_int_de_lista(int[] lista){
+        int max = 0;
+        int max_index = 0;
+        for (int i = 0; i < lista.length; i++ ) {
+            if (max <= lista[i]){
+                max = lista[i];
+                max_index = i;
+            }
+        }
+        return max_index;
+    }
 }

@@ -82,12 +82,13 @@ public class R_Numerico extends Respuesta {
     @Override
     public void Calcular_Centroide (ArrayList<Encuesta_Respondida> muestra, int index_respuesta) {
 
-        int centroide = 0;
+        int sumatoria  = 0;
 
         for (Encuesta_Respondida encuesta_respondida : muestra)
-            centroide += (int) encuesta_respondida.getLl_respuesta().get(index_respuesta).getValor();
+            sumatoria += (int) encuesta_respondida.getLl_respuesta().get(index_respuesta).getValor();
 
-        this.valor =  centroide/muestra.size();
+        int centroide= Math.round((float)sumatoria/(float)muestra.size());
+        this.valor =  centroide;
 
     }
 }

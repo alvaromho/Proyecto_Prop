@@ -63,10 +63,9 @@ public class Respuesta {
     }
 
     /*
-        * Se define la funcion distancia y getValor y se sobre-escriben en cada subclase
-        */
+     * Se define la funcion distancia, getValor y set valor para  sobreescribirlas en cada subclase
+     */
     public float distancia(Respuesta respuesta){return 0;}
-
     public Object getValor(){return null;}
     public void setValor(Object object){}
 

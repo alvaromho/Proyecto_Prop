@@ -57,8 +57,35 @@ public class Cluster {
     }
 
     public void setCentroide(Encuesta_Respondida centroide) {
+
         this.centroide = centroide;
     }
+    public  void setCentroide(){
+        // TODO Explicar
+        //TODO comprobar que la lista ya se haya inicializado
+
+        // crear instancia de centroide con valores de respuesta igual a nulo (0,"- ", [false,false]
+        Encuesta_Respondida centroide = new Encuesta_Respondida(getLista_encuesta_respondida().get(0));
+
+        for (Respuesta respuesta : centroide.getLl_respuesta()) {
+            if (respuesta instanceof R_Gradual) {
+                respuesta.setValor(0);
+            }
+            else if (respuesta instanceof R_Multiopcion) {
+                boolean[] valor = (boolean[]) respuesta.getValor();
+                respuesta.setValor(crear_array_boolean(valor.length));
+            }
+            else if (respuesta instanceof R_Numerico) {
+                respuesta.setValor(0);
+            }
+            else if (respuesta instanceof R_Texto) {
+                respuesta.setValor("-");
+            }
+        }
+    }
+
+
+
 
 //    TODO funcion get moda de una muestra (array list Encuesta respondida)
 //    public int getModa_pregunta_multipcion(ArrayList<Encuesta_Respondida> lista_encuestas_respondidas, int index_pregunta){
@@ -87,26 +114,9 @@ public class Cluster {
 //        System.out.println(centroide.getLl_respuesta().get(0).getValor());
 //        System.out.println(e.getLl_encuestas_respondidas().get(0).getLl_respuesta().get(0).getValor());
 
-        // TODO Explicar
-        // crear instancia de centroide con valores de respuesta igual a nulo (0,"- ", [false,false]
-        int cantidad_preguntas= e.getLlista_preguntes().size();
 
-            for (Respuesta respuesta : centroide.getLl_respuesta()) {
-                if (respuesta instanceof R_Gradual) {
-                    respuesta.setValor(0);
-                }
-                else if (respuesta instanceof R_Multiopcion) {
-                    boolean[] valor = (boolean[]) respuesta.getValor();
-                    respuesta.setValor(crear_array_boolean(valor.length));
-                }
-                else if (respuesta instanceof R_Numerico) {
-                    respuesta.setValor(0);
-                }
-                else if (respuesta instanceof R_Texto) {
-                    respuesta.setValor("-");
-                }
-            }
-
+//        int cantidad_preguntas= e.getLlista_preguntes().size();
+        this.setCentroide();
         /*
         * TODO Explicar
         *Calcular Centroide
@@ -117,12 +127,9 @@ public class Cluster {
             respuesta.Calcular_Centroide(grupo_cluster, centroide.getLl_respuesta().indexOf(respuesta));
         }
 
-
         print_valores_encuesta_respondida(centroide);
 
 
-        // calcular pregunta por pregunta el valor de la respuesta correspondiente al centroide
-        // setCentroide
     }
 
     public static void print_valores_encuesta_respondida(Encuesta_Respondida encuesta_respondida){
@@ -149,6 +156,8 @@ public class Cluster {
         }
         System.out.println();
     }
+
+
 
     // Agrega palabras al diccionario
     public void agregar_al_diccionario(String string){
