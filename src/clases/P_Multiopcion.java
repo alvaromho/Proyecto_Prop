@@ -8,7 +8,7 @@ public class P_Multiopcion extends Pregunta {
 
     private int min_alternativas;
     private int max_alternativas;
-    private ArrayList<String> enunciado_opcion;
+    private ArrayList<String> enunciado_opcion = new ArrayList<>();
 
 
     public P_Multiopcion() {
