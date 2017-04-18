@@ -11,6 +11,12 @@ public class R_Gradual extends Respuesta{
     private P_Gradual pregunta;
     private int valor;
 
+    public R_Gradual(R_Gradual otro) {
+        super(otro);
+        this.pregunta = otro.pregunta;
+        this.valor = otro.valor;
+    }
+
     public R_Gradual(P_Gradual pregunta) {
         super();
         this.pregunta = pregunta;
@@ -44,7 +50,8 @@ public class R_Gradual extends Respuesta{
     }
     @Override
     public Object getValor() {return valor;}
-    public void setValor(int valor) {this.valor = valor;}
+    @Override
+    public void setValor(Object valor) {this.valor = (int)valor;}
 
     public P_Gradual getPregunta() {
         return pregunta;
@@ -71,5 +78,18 @@ public class R_Gradual extends Respuesta{
         float distancia = 0;
         distancia = (float) Math.abs(valor_1 - valor_2) /(float)(numero_de_opciones -1);
         return distancia;
+    }
+
+    @Override
+    public void Calcular_Centroide (ArrayList<Encuesta_Respondida> muestra, int index_respuesta) {
+
+        int centroide = 0;
+
+        for (Encuesta_Respondida encuesta_respondida : muestra)
+            centroide += (int) encuesta_respondida.getLl_respuesta().get(index_respuesta).getValor();
+
+        this.valor =  centroide/muestra.size();
+
+
     }
 }

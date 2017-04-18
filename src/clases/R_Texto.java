@@ -8,9 +8,17 @@ import java.util.Scanner;
  */
 public class R_Texto extends Respuesta {
 
+
+    private static ArrayList<String> diccionario = new ArrayList<>();
+
     private P_Texto pregunta;
     private String valor;
 
+    public R_Texto(R_Texto otro) {
+        super(otro);
+        this.pregunta = otro.pregunta;
+        this.valor = otro.valor;
+    }
 
     public R_Texto(P_Texto pregunta) {
         super();
@@ -51,7 +59,8 @@ public class R_Texto extends Respuesta {
     }
     @Override
     public Object getValor() {return valor;}
-    public void setValor(String valor) {this.valor = valor;}
+    @Override
+    public void setValor(Object valor) {this.valor = valor.toString();}
 
     public P_Texto getPregunta() {
         return pregunta;
@@ -69,7 +78,6 @@ public class R_Texto extends Respuesta {
         String valor_2 = (String) respuesta.getValor();
 
         return (float) Lev(valor_1,valor_2) / (float) max(valor_1.length(), valor_2.length());
-
     }
 
 
@@ -81,7 +89,6 @@ public class R_Texto extends Respuesta {
             return (i >= j) ? i : j;
         }
         return Levenshtein(s1.toCharArray(),s2.toCharArray());
-
     }
 
     private static int Levenshtein(char [] s1, char [] s2) {
@@ -110,4 +117,30 @@ public class R_Texto extends Respuesta {
     public  static int max(int a, int b) {
         return (a >= b) ? a : b;
     }
+
+
+    @Override
+    public void Calcular_Centroide (ArrayList<Encuesta_Respondida> muestra, int index_respuesta) {
+
+        //Crear diccionario
+        ArrayList<String> diccionario = new ArrayList<>();
+        for (Encuesta_Respondida encuesta_respondida : muestra){
+            agregar_al_diccionario(diccionario,(String)encuesta_respondida.getLl_respuesta().get(index_respuesta).getValor());
+        }
+        for (String s : diccionario)
+            System.out.println(s);
+
+
+    }
+    // Agrega palabras al diccionario
+    public void agregar_al_diccionario(ArrayList<String> diccionario, String string){
+        for (String s : string.split("\\s+"))
+            if (!diccionario.contains(s)) diccionario.add(s);
+    }
+
+    // borra caracteres especiales y cambia las mayusculas por minusculas
+    public String limpiar_string(String string){
+        return  string.replaceAll("[^a-zA-Z]+"," ").toLowerCase();
+    }
+
 }

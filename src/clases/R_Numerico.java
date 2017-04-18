@@ -1,5 +1,6 @@
 package clases;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -10,6 +11,11 @@ public class R_Numerico extends Respuesta {
     private P_Numerico pregunta;
     private int valor;
 
+    public R_Numerico(R_Numerico otro) {
+        super(otro);
+        this.pregunta = otro.pregunta;
+        this.valor = otro.valor;
+    }
 
     public R_Numerico(P_Numerico pregunta) {
         super();
@@ -44,8 +50,8 @@ public class R_Numerico extends Respuesta {
 
     @Override
     public Object getValor() {return valor;}
-
-    public void setValor(int valor) {this.valor = valor;}
+    @Override
+    public void setValor(Object valor) {this.valor = (int)valor;}
 
     public P_Numerico getPregunta() {return pregunta;}
 
@@ -71,5 +77,17 @@ public class R_Numerico extends Respuesta {
         float distancia = 0;
         distancia = (float) Math.abs(valor_1 - valor_2) /(float)(max - min);
         return distancia;
+    }
+
+    @Override
+    public void Calcular_Centroide (ArrayList<Encuesta_Respondida> muestra, int index_respuesta) {
+
+        int centroide = 0;
+
+        for (Encuesta_Respondida encuesta_respondida : muestra)
+            centroide += (int) encuesta_respondida.getLl_respuesta().get(index_respuesta).getValor();
+
+        this.valor =  centroide/muestra.size();
+
     }
 }
