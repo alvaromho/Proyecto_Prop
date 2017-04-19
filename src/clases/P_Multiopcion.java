@@ -2,15 +2,22 @@ package clases;
 import java.util.*;
 import java.lang.*;
 
-/*Paula*/
+/*Paula Alemany*/
 
 public class P_Multiopcion extends Pregunta {
-
+    /**
+     * Atributos
+     */
     private int min_alternativas;
     private int max_alternativas;
     private ArrayList<String> enunciado_opcion = new ArrayList<>();
 
 
+    //TODO comprovar errores
+
+    /**
+     * Creadora interactiva
+     */
     public P_Multiopcion() {
         System.out.println("Introduce el numero de opciones que quiere poner:");
         Scanner scanner = new Scanner(System.in);
@@ -22,11 +29,30 @@ public class P_Multiopcion extends Pregunta {
         System.out.println("Introduce el numero maximo de alternativas que se pueden responder:");
         int maximo = scanner.nextInt();
         this.max_alternativas = maximo;
+        if(maximo < 0){
+            System.out.println("Error! El numero introducido es negativo.");
+        }
+        if(maximo > n){
+            System.out.println("Error! El valor maximo de respuestas que puedes marcar no puede ser mayor al numero de opciones que tienes para responder. ");
+        }
         System.out.println("Introduce el numero minimo de alternativas que se pueden responder:");
         int minimo = scanner.nextInt();
+        if(minimo < 0){
+            System.out.println("Error! El numero introducido es negativo.");
+        }
+        if(minimo > maximo){
+            System.out.println("Error! El valor minimo de respuestas que puedes marcar no puede ser mayor que el valor maximo. ");
+        }
         this.min_alternativas = minimo;
     }
 
+    /**
+     * creadora
+     * @param enunciado
+     * @param min_alternativas
+     * @param max_alternativas
+     * @param enunciado_opcion
+     */
     public P_Multiopcion(String enunciado, int min_alternativas, int max_alternativas, ArrayList<String> enunciado_opcion) {
         super(enunciado);
         this.min_alternativas = min_alternativas;

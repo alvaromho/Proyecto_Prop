@@ -3,7 +3,7 @@ import java.util.*;
 import java.io.*;
 
 /**
- *
+ *Paula Alemany
  */
 public class P_Numerico extends Pregunta {
 
