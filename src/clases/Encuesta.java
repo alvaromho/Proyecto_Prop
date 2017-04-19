@@ -11,7 +11,7 @@ import java.io.*;
 
 
 
-public class Encuesta {
+public class    Encuesta {
 
     private int id;
     private String name;
@@ -64,6 +64,14 @@ public class Encuesta {
             System.out.println("Seguent Pregunta a introduir: ");
             tipus_pregunta = Integer.parseInt(scanner.next());
         }
+    }
+
+    public Encuesta(int id, String name, Calendar creation_date, ArrayList<Pregunta> ll_preguntes, ArrayList<Encuesta_Respondida> ll_encuestas_respondidas) {
+        this.id = id;
+        this.name = name;
+        this.creation_date = creation_date;
+        this.ll_preguntes = ll_preguntes;
+        this.ll_encuestas_respondidas = ll_encuestas_respondidas;
     }
 
     public Encuesta(String nom_ficher) throws IOException {

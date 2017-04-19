@@ -11,6 +11,12 @@ public class R_Gradual extends Respuesta{
     private P_Gradual pregunta;
     private int valor;
 
+    public R_Gradual(R_Gradual otro) {
+        super(otro);
+        this.pregunta = otro.pregunta;
+        this.valor = otro.valor;
+    }
+
     public R_Gradual(P_Gradual pregunta) {
         super();
         this.pregunta = pregunta;
@@ -44,7 +50,8 @@ public class R_Gradual extends Respuesta{
     }
     @Override
     public Object getValor() {return valor;}
-    public void setValor(int valor) {this.valor = valor;}
+    @Override
+    public void setValor(Object valor) {this.valor = (int)valor;}
 
     public P_Gradual getPregunta() {
         return pregunta;
@@ -57,19 +64,36 @@ public class R_Gradual extends Respuesta{
     @Override
     public float distancia(Respuesta respuesta) {
 
+
         // conseguir  primer valor (this)
         int valor_1  = (int) this.getValor();
         // conseguir segundo valor
         int valor_2 = (int) respuesta.getValor();
+        if (valor_1 == 0 || valor_2 ==0) return 1;
 
         // conseguir min y max
         int numero_de_opciones= this.pregunta.enunciado_opcion.size();
 
         // formula de distancia
-
-
         float distancia = 0;
+//        System.out.println("v1("+valor_1+")-v2("+valor_2+") = "+Math.abs(valor_1-valor_2));
+//        System.out.println("numero de opciones: "+numero_de_opciones);
         distancia = (float) Math.abs(valor_1 - valor_2) /(float)(numero_de_opciones -1);
         return distancia;
+    }
+
+    @Override
+    public void Calcular_Centroide (ArrayList<Encuesta_Respondida> muestra, int index_respuesta) {
+
+        int sumatoria = 0;
+        /* Calcular la sumatoria de todos los valores ingresados para esta respuesta */
+        for (Encuesta_Respondida encuesta_respondida : muestra)
+            sumatoria += (int) encuesta_respondida.getLl_respuesta().get(index_respuesta).getValor();
+
+        int centroide= Math.round((float)sumatoria/(float)muestra.size()); // redondear al int más cercano
+
+        this.valor =  centroide;
+
+
     }
 }

@@ -1,6 +1,8 @@
 package clases;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -8,9 +10,17 @@ import java.util.Scanner;
  */
 public class R_Texto extends Respuesta {
 
+
+    private static ArrayList<String> diccionario = new ArrayList<>();
+
     private P_Texto pregunta;
     private String valor;
 
+    public R_Texto(R_Texto otro) {
+        super(otro);
+        this.pregunta = otro.pregunta;
+        this.valor = otro.valor;
+    }
 
     public R_Texto(P_Texto pregunta) {
         super();
@@ -51,7 +61,8 @@ public class R_Texto extends Respuesta {
     }
     @Override
     public Object getValor() {return valor;}
-    public void setValor(String valor) {this.valor = valor;}
+    @Override
+    public void setValor(Object valor) {this.valor = valor.toString();}
 
     public P_Texto getPregunta() {
         return pregunta;
@@ -64,12 +75,10 @@ public class R_Texto extends Respuesta {
 
     @Override
     public float distancia(Respuesta respuesta) {
-
         String valor_1 =this.valor;
         String valor_2 = (String) respuesta.getValor();
 
         return (float) Lev(valor_1,valor_2) / (float) max(valor_1.length(), valor_2.length());
-
     }
 
 
@@ -81,7 +90,6 @@ public class R_Texto extends Respuesta {
             return (i >= j) ? i : j;
         }
         return Levenshtein(s1.toCharArray(),s2.toCharArray());
-
     }
 
     private static int Levenshtein(char [] s1, char [] s2) {
@@ -109,5 +117,59 @@ public class R_Texto extends Respuesta {
 
     public  static int max(int a, int b) {
         return (a >= b) ? a : b;
+    }
+
+
+    @Override
+    public void Calcular_Centroide (ArrayList<Encuesta_Respondida> muestra, int index_respuesta) {
+
+        // 1- crear arraylist solo con una instancia de cada palabra con sentido semantico //TODO SENTIDO SEMANTICO
+        ArrayList<String> respuestas = new ArrayList<>();
+        ArrayList<String> respuestas_filtradas = new ArrayList<>();
+
+        for (Encuesta_Respondida encuesta_respondida : muestra) {
+
+            String valor = (String) encuesta_respondida.getLl_respuesta().get(index_respuesta).getValor();
+            String[] valores = valor.split("\\s+");
+
+            for (String s : valores) {
+                respuestas.add(s);
+            }
+        }
+        for (String s : respuestas) {
+            if (!respuestas_filtradas.contains(s)) {
+//                System.out.println("agregado");
+                respuestas_filtradas.add(s);
+            }
+        }
+
+        // 2 - crear int[] para almacenar la frecuencia de cada posible respuesta
+        int[] frecuencias = new int[respuestas_filtradas.size()];
+
+
+        for (int i = 0; i < respuestas_filtradas.size(); i++) {
+            frecuencias[i] = Collections.frequency(respuestas, respuestas_filtradas.get(i));
+//            System.out.println("f: "+frecuencias[i]);
+        }
+        // 3 - Encontrar maximo (frecuencia)
+        int index_frecuencia_maxima = max_int_de_lista(frecuencias);
+        // 5 - retornar valor con el mayor numero de frecuencias
+//        System.out.println("index " + index_frecuencia_maxima);
+//        System.out.println("palabra " + respuestas_filtradas.get(index_frecuencia_maxima));
+        this.setValor(respuestas_filtradas.get(index_frecuencia_maxima));
+
+    }
+
+
+    public static int max_int_de_lista(int[] lista){
+        int max = 0;
+        int max_index = 0;
+        for (int i = 0; i < lista.length; i++ ) {
+            if (max <= lista[i]){
+                max = lista[i];
+                max_index = i;
+            }
+        }
+        return max_index;
     }
 }

@@ -37,6 +37,40 @@ import java.util.*;
         this.ll_respuesta = ll_respuesta;
     }
 
+    public Encuesta_Respondida(Encuesta e, String nombre, Calendar creation_date, ArrayList<Respuesta> ll_respuesta) {
+        this.id = id_count;
+        ++id_count;
+        this.encuesta = e;
+        this.name = nombre;
+        this.creation_date = creation_date;
+        this.ll_respuesta = ll_respuesta;
+    }
+
+    // TODO constructor copiar para generar/inciar centroide a partir de una encuesta_respondida de la nis
+    public Encuesta_Respondida(Encuesta_Respondida otro) {
+        this.id = id_count;
+        id_count++;
+         this.encuesta = otro.encuesta;
+         this.name = otro.name;
+         this.creation_date = otro.creation_date;
+
+         //  Copiar ll_respusta
+        int i = 0;
+        this.ll_respuesta = new ArrayList<Respuesta>();
+        for ( Respuesta respuesta : otro.getLl_respuesta()){
+
+            if (respuesta instanceof R_Gradual){
+                this.getLl_respuesta().add(new R_Gradual((R_Gradual)respuesta));
+            } else if (respuesta instanceof R_Multiopcion){
+                this.getLl_respuesta().add(new R_Multiopcion((R_Multiopcion)respuesta));
+            } else if (respuesta instanceof R_Numerico){
+                this.getLl_respuesta().add(new R_Numerico((R_Numerico)respuesta));
+            } else if (respuesta instanceof R_Texto){
+                this.getLl_respuesta().add(new R_Texto((R_Texto) respuesta));
+            }
+        }
+    }
+
     public int getId() {    //Getter id
         return id;
     }
@@ -78,6 +112,7 @@ import java.util.*;
     }
 
     public void añadir_respuesta_interactivo(Pregunta p){
+
         System.out.println(p.getEnunciado());
         if (p instanceof P_Gradual) {
             System.out.println("Gradual");
@@ -171,6 +206,8 @@ import java.util.*;
         ll_respuesta.set(index, respuesta_new);
 
     }
+
+
 
 
 }
