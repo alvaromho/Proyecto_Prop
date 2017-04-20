@@ -2,7 +2,7 @@ import java.util.*;
 import java.lang.*;
 
 /**
- * Paula Alemany
+ * Paula Alemany i Vergé
  */
 public class Muestra {
     /*Atributos*/

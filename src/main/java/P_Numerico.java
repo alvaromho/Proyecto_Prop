@@ -11,7 +11,7 @@ public class P_Numerico extends Pregunta {
     private int max;
 
     /**
-     *contr
+     * creadora interactiva
      */
     public P_Numerico() {
         Scanner scanner = new Scanner(System.in);
@@ -21,6 +21,15 @@ public class P_Numerico extends Pregunta {
         System.out.println("Introduce el numero minimo que se puede responder: ");
         int min = scanner.nextInt();
         this.min = min;
+        if(max < min or max < 0 or min < 0){
+            System.out.println("Error! Los valores introducidos no son correctos. Recuerda: Los valores deben ser positivos y el valor minimo debe ser mas pequeño o igual que el maximo.\n Por favor, vuelve a introducir el valor maximo: ");
+            max = scanner.nextInt();
+            this.max = max;
+            System.out.println("Ahora introduzca el valor minimo: ");
+            min = scanner.nextInt();
+            this.min = min;
+
+        }
     }
 
     /**
@@ -36,20 +45,24 @@ public class P_Numerico extends Pregunta {
     }
 
     /**
-     * CONSULTORAS
-     * @return
+     * Devuelve el valor minimo que se puede responder.
+     * @return min
      */
     public int getMin() {
         return min;
     }
 
+    /**
+     * Devuelve el valor maximo que se puede responder.
+     * @return max
+     */
     public int getMax() {
         return max;
     }
 
     /**
-     * MODIFICADORAS
-     * @param
+     * modificamos el valor minimo que teniamos como atributo min por el que pasamos como parametro.
+     * @param min
      */
     public void setMin(int min) {
         this.min = min;

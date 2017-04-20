@@ -1,8 +1,9 @@
 import java.util.*;
 
 /**
- * Paula Alemany
+ * Paula Alemany i Vergé
  */
+
 public class P_Texto extends Pregunta {
 
     /**
@@ -11,16 +12,19 @@ public class P_Texto extends Pregunta {
     public int max_length;
 
     /**
-     * Creadora
+     * Creadora interactiva
      */
     public P_Texto() {
         System.out.println("Introduce el tamaño maximo del texto:");
         Scanner scanner = new Scanner(System.in);
         this.max_length = scanner.nextInt();
+        if(max_length < 0){
+            System.out.println("Error, el nombre de caracters del text no pot ser un valor negatiu.");
+        }
     }
 
     /**
-     *Es la creadora a partir del enunciado de la pregunta y el tamaño maximo del texto de la respuesta
+     * Es la creadora a partir del enunciado de la pregunta y el tamaño maximo del texto de la respuesta
      * @param enunciado
      * @param max_length
      */
@@ -30,7 +34,7 @@ public class P_Texto extends Pregunta {
     }
 
     /**
-     *Devuelve el tamaño maximo del Texto
+     * Devuelve el tamaño maximo del Texto
      * @return max_length
      */
     public int getMax_length() {
