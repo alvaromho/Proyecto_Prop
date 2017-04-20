@@ -13,6 +13,9 @@ public class Muestra {
     private ArrayList<Encuesta_Respondida> lista_respuestas = new ArrayList();
     private Encuesta encuesta;
 
+    /**
+     * Creadora
+     */
 
     public Muestra (){
         /*this.id_muestra = contador;
@@ -31,16 +34,17 @@ public class Muestra {
     public Muestra(Encuesta e, ArrayList<Encuesta_Respondida> lista_encuestas_respondida ) {
         this.setId_muestra();
         this.encuesta = e;
-        this.lista_respuestas = lista_encuestas_respondida;
-        /*
-        int cont_id = 1;
+        //this.lista_respuestas = lista_encuestas_respondida;
+        //int cont_id = 1;
         this.encuesta = e;
-       Encuesta_Respondida er = new Encuesta_Respondida();
-        while(encuesta.getName() == er.get(cont_id).getEncuesta.getName()){ //mirar quin és el ultim id dencuesta respondida
-            this.lista_respuestas.add(er);
-            ++cont_id;
+        for(Encuesta_Respondida er : lista_encuestas_respondida){
+            if(encuesta.getName() == er.getName()){
+                this.lista_respuestas.add(er);
+            }
+            else{
+                System.out.println("Error! La encuesta respondida de la lista no coincide con la encuesta que queremos analizar.")
+            }
         }
-        */
         //añadir opciones de filtro+
     }
 
