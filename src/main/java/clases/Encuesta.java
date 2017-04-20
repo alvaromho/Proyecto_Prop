@@ -1,12 +1,11 @@
 package clases;
 
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
-import jdk.nashorn.api.scripting.JSObject;
-import jdk.nashorn.internal.parser.JSONParser;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
-import java.io.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Scanner;
 
 /**
  *   Clase Encuesta
