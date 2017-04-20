@@ -15,7 +15,7 @@ import java.util.*;
     private Calendar creation_date;
     private ArrayList<Respuesta> ll_respuesta = new ArrayList<>();
 
-    private static int id_count = 1;
+    private static int id_count = 0;
 
     public Encuesta_Respondida(Encuesta e) {
         //Se crea una Encuesta_Respondida interactivamente
@@ -27,6 +27,15 @@ import java.util.*;
         this.name = scanner.next();
         this.creation_date = Calendar.getInstance();
 
+    }
+
+    public Encuesta_Respondida(Encuesta e, String name) {
+        this.id = id_count;
+        ++id_count;
+        this.encuesta = e;
+        System.out.println("Introduce tu nombre:");
+        this.name = name;
+        this.creation_date = Calendar.getInstance();
     }
 
     public Encuesta_Respondida(String nombre, Calendar creation_date, ArrayList<Respuesta> ll_respuesta, int id_encuesta) {
@@ -113,29 +122,31 @@ import java.util.*;
 
     public void añadir_respuesta_interactivo(Pregunta p){
 
-        System.out.println(p.getEnunciado());
+        //System.out.println(p.getEnunciado());
         if (p instanceof P_Gradual) {
-            System.out.println("Gradual");
+            //System.out.println("Gradual");
             R_Gradual rg = new R_Gradual((P_Gradual) p);
             this.ll_respuesta.add(rg);
         }
         else if (p instanceof P_Multiopcion) {
-            System.out.println("MultiOpcion");
+            //System.out.println("MultiOpcion");
             R_Multiopcion rm = new R_Multiopcion((P_Multiopcion) p);
             this.ll_respuesta.add(rm);
         }
         else if (p instanceof P_Numerico) {
-            System.out.println("Numerico");
+            //System.out.println("Numerico");
             R_Numerico rn = new R_Numerico((P_Numerico) p);
             this.ll_respuesta.add(rn);
         }
         else if (p instanceof P_Texto) {
-            System.out.println("Texto");
+            //System.out.println("Texto");
             R_Texto rt = new R_Texto((P_Texto) p);
             this.ll_respuesta.add(rt);
         }
-        else System.out.println("Normal");
-        System.out.println(p.getEnunciado());
+        else {
+            System.out.println("Normal");
+            System.out.println(p.getEnunciado());
+        }
     }
 
     /*
@@ -155,10 +166,8 @@ import java.util.*;
         System.out.println("Texto");
     }*/
 
-    public void añadir_respuesta_importar(Pregunta p, String nom_ficher) throws IOException {
-        FileReader fr = new FileReader(nom_ficher);
-        BufferedReader bf = new BufferedReader(fr);
-        int inutil = Integer.parseInt(bf.readLine());
+    public void añadir_respuesta_importar(Pregunta p, String nom_ficher, BufferedReader bf) throws IOException {
+        String nombre_encuesta = bf.readLine();
         if (p instanceof P_Gradual) {
             //System.out.println("Gradual");
             int valor = Integer.parseInt(bf.readLine());
