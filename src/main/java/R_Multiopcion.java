@@ -1,6 +1,3 @@
-package clases;
-
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -49,7 +46,7 @@ public class R_Multiopcion extends Respuesta {
         boolean cantidad_de_alternativas_correcta = false;
         do {
 
-            System.out.println("¿Cuantas alternativas desea elegir? Debe elegir entre " + min + " y " + max + ".");
+            System.out.println("¿Cuantas alternativas desea elegir? Debe elegir entre " + min + " y " + max + "");
 
             numero_de_alternativas = scanner.nextInt();
             if (numero_de_alternativas < min || numero_de_alternativas > max) {

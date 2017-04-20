@@ -1,7 +1,4 @@
-package clases;
-
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Created by Alvaro Muñoz
