@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.Scanner;
 
 /**
- * Created by Alvaro Muñoz.
+ * Created by Alvaro Muñoz
  */
 public class R_Texto extends Respuesta {
 
