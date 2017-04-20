@@ -39,10 +39,12 @@ public class Muestra {
     }
 
     public Muestra(Encuesta e, ArrayList<Encuesta_Respondida> lista_encuestas_respondida, Pregunta pregunta, Object valor) {
-        for (Encuesta_Respondida er : lista_encuestas_respondida) {
+        for (Encuesta_Respondida er : lista_encuestas_respondida){
             for (Respuesta r : er.getLl_respuesta()) {
                 if (r.getPregunta() == pregunta) {
-                    //if(r. ...valor)
+                    if (r.getValor() == valor) {
+                        lista_respuestas.add(er);
+                    }
                 }
             }
         }
