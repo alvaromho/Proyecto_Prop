@@ -1,6 +1,9 @@
 package clases;
 
 import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+import jdk.nashorn.api.scripting.JSObject;
+import jdk.nashorn.internal.parser.JSONParser;
+
 import java.io.IOException;
 import java.util.*;
 import java.io.*;
@@ -19,7 +22,7 @@ public class    Encuesta {
     private ArrayList<Pregunta> ll_preguntes = new ArrayList<>();
     private ArrayList<Encuesta_Respondida> ll_encuestas_respondidas = new ArrayList<>();
 
-    private static int id_count = 1;
+    private static int id_count = 0;
 
 
     public Encuesta() {
@@ -35,6 +38,7 @@ public class    Encuesta {
         System.out.println("2: Tipo Multiopcion");
         System.out.println("3: Tipo Numerico");
         System.out.println("4: Tipo Texto(respuesta libre)");
+        System.out.println("5: Consultar encuesta");
         System.out.println("0: Fi");
         int tipus_pregunta = Integer.parseInt(scanner.next());
         while (tipus_pregunta != 0) {
@@ -84,6 +88,7 @@ public class    Encuesta {
         }*/
         this.id = id_count;
         ++id_count;
+        System.out.println("Id:" + this.id);
         //Leemos el nombre de la encuesta
         //Scanner scanner = new Scanner(System.in);
         this.name = bf.readLine();
@@ -104,9 +109,6 @@ public class    Encuesta {
                     ll_preguntes.add(pg);
                     break;
                 case 2:
-                    //Leemos el minimo i el maximo de alternativas a escoger
-                    int min_alternativas = Integer.parseInt(bf.readLine());
-                    int max_alternativas = Integer.parseInt(bf.readLine());
                     opciones = new ArrayList<>();
                     //Leemos el numero de opciones
                     int m = Integer.parseInt(bf.readLine());
@@ -114,6 +116,9 @@ public class    Encuesta {
                         //Leemos una opcion
                         opciones.add(bf.readLine());
                     }
+                    //Leemos el minimo i el maximo de alternativas a escoger
+                    int min_alternativas = Integer.parseInt(bf.readLine());
+                    int max_alternativas = Integer.parseInt(bf.readLine());
                     P_Multiopcion pm = new P_Multiopcion(enunciado, min_alternativas, max_alternativas, opciones);
                     ll_preguntes.add(pm);
                     break;
@@ -133,15 +138,16 @@ public class    Encuesta {
                     ll_preguntes.add(pt);
                     break;
                 default:
-                    System.out.println("Opcio no vàlida");
+                   // System.out.println("Encuesta no correcta");
                     break;
             }
-            System.out.println("Seguent Pregunta a introduir: ");
+            //System.out.println("Seguent Pregunta a introduir: ");
             //Volvemos a leer el tipo de pregunta que se quiere crear
             tipus_pregunta = Integer.parseInt(bf.readLine());
         }
         //Cerramos el fichero
         bf.close();
+        System.out.println("Encuesta creada correctamente");
     }
 
     public int getId() {    //GetterId
@@ -219,15 +225,16 @@ public class    Encuesta {
             er.añadir_respuesta_interactivo(p);
         }
         ll_encuestas_respondidas.add(er);
+        System.out.println("Encuesta Respondida Correctamente");
     }
 
-    public void responder_importar(String nom_ficher) throws IOException {
-        Encuesta_Respondida er = new Encuesta_Respondida(this);
+    public void responder_importar(String nom_ficher, BufferedReader bf) throws IOException {
+        String name = bf.readLine();
+        Encuesta_Respondida er = new Encuesta_Respondida(this, name);
         for (Pregunta p : ll_preguntes) {
-            er.añadir_respuesta_importar(p, nom_ficher);
+            er.añadir_respuesta_importar(p, nom_ficher, bf);
         }
         ll_encuestas_respondidas.add(er);
+        System.out.println("Encuesta Respondida Correctamente");
     }
-
-
 }

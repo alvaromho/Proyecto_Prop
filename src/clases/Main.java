@@ -10,10 +10,9 @@ public class Main {
         // write your code here
 
 
-        //ArrayList<Encuesta> ll_encuestas = new ArrayList<Encuesta>();
+        ArrayList<Encuesta> ll_encuestas = new ArrayList<Encuesta>();
 
-
-        /*System.out.println("Introduce un numero para escoger la opción que quiere realizar:");
+        System.out.println("Introduce un numero para escoger la opción que quiere realizar:");
         System.out.println("1: Crear Encuesta interactivo");
         System.out.println("2: Importar Encuesta");
         System.out.println("3: Responder Encuesta interactivo");
@@ -54,16 +53,26 @@ public class Main {
                     BufferedReader bf = new BufferedReader(fr);
                     respondemos = Integer.parseInt(bf.readLine());
                     e = ll_encuestas.get(respondemos);
-                    e.responder_importar(nom_ficher);
-
+                    e.responder_importar(nom_ficher, bf);
+                    break;
                 default:
                     System.out.println("Opcion no valida");
                     break;
             }
+
+            System.out.println("Introduce un numero para escoger la opción que quiere realizar:");
+            System.out.println("1: Crear Encuesta interactivo");
+            System.out.println("2: Importar Encuesta");
+            System.out.println("3: Responder Encuesta interactivo");
+            System.out.println("4: Importar respuesta de una encuesta");
+            System.out.println("5:");
+            System.out.println("0: Fi");
+
             opcio = Integer.parseInt(scanner.next());
+        }
 
 
-        }*/
+
 
   /*      Encuesta e = new Encuesta();
         e.responder_interactivo();
@@ -113,7 +122,7 @@ public class Main {
         System.out.println(r2.distancia(r3));*/
 
 
-        Analisis a = new Analisis("analisis",1);
+        /*Analisis a = new Analisis("analisis",1);
 
         ArrayList<Respuesta> array_respuesta_1= new ArrayList<>();
         ArrayList<Respuesta> array_respuesta_2= new ArrayList<>();
@@ -135,11 +144,6 @@ public class Main {
         boolean [] bool_array1 = {true,true, false, false, false};
         boolean [] bool_array2 = {false,false, true, true, false};
 
-
-        /*
-        *
-        *
-        */
         P_Numerico p1 = new P_Numerico("enunciado 1", 0, 10);
         P_Numerico p2 = new P_Numerico("enunciado 2", 0, 10);
         P_Gradual p3 = new P_Gradual("enunciado 3",opciones);
@@ -192,7 +196,7 @@ public class Main {
 
 
         Cluster c = new Cluster(ler1);
-        c.Calcular_Centride(ler1);
+        c.Calcular_Centride(ler1);*/
 
 
     }
