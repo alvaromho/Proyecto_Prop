@@ -15,7 +15,7 @@ public class Muestra {
     private Encuesta encuesta;
 
     /**
-     * Creadora a partir de pasar como parametro una encuesta que a partir de ella podremos obtener la lista de encuestas respondidas de esa misma encuesta.
+     * Constructora, se crea a partir de pasar como parametro una encuesta que a partir de ella podremos obtener la lista de encuestas respondidas de esa misma encuesta.
      * @param e
      */
     public Muestra (Encuesta e){
@@ -24,7 +24,7 @@ public class Muestra {
     }
 
     /**
-     * Creadora a partir de una encuesta y una lista de encuestas respondidas de la cual sacaremos las que tengan el mimso nombre de encuesta.
+     * Constructora, se crea a partir de una encuesta y una lista de encuestas respondidas de la cual sacaremos las que tengan el mimso nombre de encuesta.
      * @param e
      * @param lista_encuestas_respondida
      */
@@ -42,7 +42,7 @@ public class Muestra {
     }
 
     /**
-     * Creadora con filtro a partir de una pregunta y el valor de su respuesta.
+     * Constructora con filtro, se crea a partir de una pregunta y el valor de su respuesta.
      * @param e
      * @param lista_encuestas_respondida
      * @param pregunta

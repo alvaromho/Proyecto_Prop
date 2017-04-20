@@ -15,7 +15,7 @@ public class P_Multiopcion extends Pregunta {
     private ArrayList<String> enunciado_opcion = new ArrayList<>();
 
     /**
-     * Creadora interactiva a partir de los pasos que se mostraran en pantalla vamos a ir introduciendo los datos para asi asignar a cada atributo de la clase un valor.
+     * Constructora interactiva, a partir de los pasos que se mostraran en pantalla vamos a ir introduciendo los datos para asi asignar a cada atributo de la clase un valor.
      */
     public P_Multiopcion() {
         System.out.println("Introduce el numero de opciones que quiere poner:");
@@ -50,7 +50,7 @@ public class P_Multiopcion extends Pregunta {
     }
 
     /**
-     * Creadora a partir de los parametros que se passan en la funcion.
+     * Contructora, a partir de los parametros que se passan en la funcion.
      * @param enunciado
      * @param min_alternativas
      * @param max_alternativas

@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- *Paula Alemany
+ *Paula Alemany i Vergé
  */
 public class P_Numerico extends Pregunta {
     /**
@@ -11,7 +11,7 @@ public class P_Numerico extends Pregunta {
     private int max;
 
     /**
-     * creadora interactiva
+     * Constructora interactiva, se crea a partir de los datos que se introducen al seguir los passos que se muestran en pantalla.
      */
     public P_Numerico() {
         Scanner scanner = new Scanner(System.in);
@@ -33,7 +33,7 @@ public class P_Numerico extends Pregunta {
     }
 
     /**
-     * CREADORA
+     * Constructora a partir de los valores que se pasan como parametros.
      * @param enunciado
      * @param min
      * @param max
@@ -61,13 +61,17 @@ public class P_Numerico extends Pregunta {
     }
 
     /**
-     * modificamos el valor minimo que teniamos como atributo min por el que pasamos como parametro.
+     * Modificamos el valor minimo que teniamos como atributo min por el que pasamos como parametro.
      * @param min
      */
     public void setMin(int min) {
         this.min = min;
     }
 
+    /**
+     * Modificamos el valor maximo que teniamos como atributo max por el que pasamos como parametro.
+     * @param max
+     */
     public void setMax(int max) {
         this.max = max;
     }

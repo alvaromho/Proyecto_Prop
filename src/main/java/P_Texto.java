@@ -12,7 +12,7 @@ public class P_Texto extends Pregunta {
     public int max_length;
 
     /**
-     * Creadora interactiva
+     * Constructora interactiva, se crea a partir de los datos que se introducen al seguir los pasos que se van mostrando en pantalla.
      */
     public P_Texto() {
         System.out.println("Introduce el tamaño maximo del texto:");
@@ -24,7 +24,7 @@ public class P_Texto extends Pregunta {
     }
 
     /**
-     * Es la creadora a partir del enunciado de la pregunta y el tamaño maximo del texto de la respuesta
+     * Constructora,se crea a partir del enunciado de la pregunta y el tamaño maximo del texto de la respuesta.
      * @param enunciado
      * @param max_length
      */
@@ -34,7 +34,7 @@ public class P_Texto extends Pregunta {
     }
 
     /**
-     * Devuelve el tamaño maximo del Texto
+     * Devuelve el tamaño maximo del Texto.
      * @return max_length
      */
     public int getMax_length() {
@@ -42,7 +42,7 @@ public class P_Texto extends Pregunta {
     }
 
     /**
-     * modificamos el tamaño maximo que teniamos por el tamaño que pasamos como parametro
+     * Modificamos el tamaño maximo que teniamos por el tamaño que pasamos como parametro.
      * @param max_length
      */
     public void setMax_length(int max_length) {
