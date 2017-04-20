@@ -1,9 +1,12 @@
 import java.util.*;
 import java.lang.*;
 
-/*Paula Alemany*/
+/**
+ * Paula Alemany i Vergé
+ */
 
 public class P_Multiopcion extends Pregunta {
+
     /**
      * Atributos
      */
@@ -11,11 +14,8 @@ public class P_Multiopcion extends Pregunta {
     private int max_alternativas;
     private ArrayList<String> enunciado_opcion = new ArrayList<>();
 
-
-    //TODO comprovar errores
-
     /**
-     * Creadora interactiva
+     * Creadora interactiva a partir de los pasos que se mostraran en pantalla vamos a ir introduciendo los datos para asi asignar a cada atributo de la clase un valor.
      */
     public P_Multiopcion() {
         System.out.println("Introduce el numero de opciones que quiere poner:");
@@ -43,10 +43,14 @@ public class P_Multiopcion extends Pregunta {
             System.out.println("Error! El valor minimo de respuestas que puedes marcar no puede ser mayor que el valor maximo. ");
         }
         this.min_alternativas = minimo;
+        System.out.println("Introduce las posibles respuestas: ");
+        for (int i = 0; i < n; ++i) {
+            enunciado_opcion.add(scanner.next());
+        }
     }
 
     /**
-     * creadora
+     * Creadora a partir de los parametros que se passan en la funcion.
      * @param enunciado
      * @param min_alternativas
      * @param max_alternativas
@@ -59,31 +63,51 @@ public class P_Multiopcion extends Pregunta {
         this.enunciado_opcion = enunciado_opcion;
     }
 
+    /**
+     * Devuelve el valor que tenemos guardado en el atributo min_alternativas.
+     * @return int
+     */
     public int getMin_alternativas() {
         return min_alternativas;
     }
 
+    /**
+     * Modifica el valor que tenemos en el atributo min_alternativas por el que se pasa como parametro.
+     * @param min_alternativas
+     */
     public void setMin_alternativas(int min_alternativas) {
         this.min_alternativas = min_alternativas;
     }
 
+    /**
+     * Devuelve el valor que tenemos guardado en el atributo max_alternativas.
+     * @return int
+     */
     public int getMax_alternativas() {
         return max_alternativas;
     }
 
+    /**
+     * Modifica el valor que tenemos en el atributo max_alternativas por el que se pasa como parametro.
+     * @param max_alternativas
+     */
     public void setMax_alternativas(int max_alternativas) {
         this.max_alternativas = max_alternativas;
     }
 
+    /**
+     * Devuelve la lista que tenemos guardada en el atributo enunciado_opcion.
+     * @return ArrayList<String>
+     */
     public ArrayList<String> getEnunciado_opcion() {
         return enunciado_opcion;
     }
 
+    /**
+     * Modifica la lista que tenemos en el atributo enunciado_opcion por la que se pasa como parametro.
+     * @param enunciado_opcion
+     */
     public void setEnunciado_opcion(ArrayList<String> enunciado_opcion) {
         this.enunciado_opcion = enunciado_opcion;
     }
 
-    public int getSizeEncunciado_Opcion() {
-        return this.enunciado_opcion.size();
-    }
-}
