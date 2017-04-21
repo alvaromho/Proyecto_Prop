@@ -13,6 +13,9 @@ public class P_Gradual extends Pregunta {
 
     protected ArrayList<String> enunciado_opcion = new ArrayList<>();
 
+    /**
+     * Constructor de Pregunta Gradual interactivo
+     */
     public P_Gradual() {
         Scanner scanner = new Scanner(System.in);
         int n = -1;
@@ -32,15 +35,28 @@ public class P_Gradual extends Pregunta {
         }
     }
 
+    /**
+     * Constructor de Pregunta Gradual
+     * @param enunciado
+     * @param enunciado_opcion
+     */
     public P_Gradual(String enunciado, ArrayList<String> enunciado_opcion) {
         super(enunciado);
         this.enunciado_opcion = enunciado_opcion;
     }
 
+    /**
+     * Getter Enunciado_opcion
+     * @return enunciado_opcion
+     */
     public ArrayList<String> getEnunciado_opcion() {
         return enunciado_opcion;
     }
 
+    /**
+     * Setter enunciado_opcion
+     * @param enunciado_opcion
+     */
     public void setEnunciado_opcion(ArrayList<String> enunciado_opcion) {
         this.enunciado_opcion = enunciado_opcion;
     }

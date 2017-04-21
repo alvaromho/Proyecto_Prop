@@ -1,5 +1,0 @@
-
-
-/**
- * Clase eliminada del modelo
- */

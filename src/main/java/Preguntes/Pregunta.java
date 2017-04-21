@@ -13,7 +13,9 @@ public class Pregunta {
 
     protected static int id_count = 1;
 
-    //Constructor
+    /**
+     * Constructor Pregunta interactivo
+     */
     public Pregunta() {
         this.id = id_count;
         ++id_count;
@@ -22,7 +24,10 @@ public class Pregunta {
         this.enunciado = scanner.next();
     }
 
-    //Constructor
+    /**
+     * Constructor pregunta
+     * @param enunciado
+     */
     public Pregunta(String enunciado) {
         this.id = id_count;
         ++id_count;

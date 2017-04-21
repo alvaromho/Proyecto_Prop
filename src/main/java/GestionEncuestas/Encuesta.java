@@ -23,6 +23,9 @@ public class    Encuesta {
     private static int id_count = 0;
 
 
+    /**
+     * Constructor Encuesta(iterativo)
+     */
     public Encuesta() {
         //Crea una encuesta interactivamente
         this.id = id_count;
@@ -83,6 +86,14 @@ public class    Encuesta {
         }
     }
 
+    /**
+     * Constructor Encuesta iterativo
+     * @param id
+     * @param name
+     * @param creation_date
+     * @param ll_preguntes
+     * @param ll_encuestas_respondidas
+     */
     public Encuesta(int id, String name, Calendar creation_date, ArrayList<Pregunta> ll_preguntes, ArrayList<Encuesta_Respondida> ll_encuestas_respondidas) {
         this.id = id;
         this.name = name;
@@ -160,6 +171,7 @@ public class    Encuesta {
         System.out.println("GestionEncuestas.Encuesta creada correctamente");
     }*/
 
+
     public int getId() {    //GetterId
         return id;
     }
@@ -196,21 +208,42 @@ public class    Encuesta {
         this.ll_encuestas_respondidas = ll_encuestas_respondidas;
     }
 
+    /**
+     * Elimina una pregunta de la encuesta
+     * @param pregunta
+     * @return
+     */
     public boolean eliminar_pregunta(Pregunta pregunta) {
     //Elimina una pregunta de la encuesta, devuelve true si la elimina, falso si no contiene la pregunta.
         return  ll_preguntes.remove(pregunta);
     }
 
+    /**
+     * Añadir Pregunta Pos
+     * @param pos
+     * @param pregunta
+     */
     public void añadir_pregunta_pos(int pos, Pregunta pregunta) {
     //Añade una pregunta al final de la encuesta.
         ll_preguntes.add(pos, pregunta);
     }
 
+    /**
+     * Añadir Pregunta final
+     * @param pregunta
+     * @return devuelve si se ha añadido
+     */
     public boolean añadir_pregunta_final(Pregunta pregunta) {
     //Añade una pregunta al final de la encuesta, devuelve true si la añade, false si ya existia.
         return ll_preguntes.add(pregunta);
     }
 
+    /**
+     *
+     * @param pregunta_old
+     * @param pregunta_new
+     * @return Si se ha modificado devuelve true, devuelve falso en caso contrario.
+     */
     public boolean modificar_pregunta(Pregunta pregunta_old, Pregunta pregunta_new) {
     //Se reemplaza una pregunta por otra, devuelve true si la pregunta_old se encuera en ll_preguntes, false en caso contrario
         int index = ll_preguntes.indexOf(pregunta_old);
@@ -219,16 +252,30 @@ public class    Encuesta {
         return true;
     }
 
+    /**
+     * Reemplaza la pregunta situada en index por pregunta_new
+     * @param index
+     * @param pregunta_new
+     */
     public void modificar_pregunta_indice(int index, Pregunta pregunta_new) {
         //Se reemplaza una pregunta por otra, devuelve true si se ejecuta correctamente, false en caso contrario
         ll_preguntes.set(index, pregunta_new);
     }
 
     //Retorna el ll_preguntes donat un id_encuesta
+
+    /**
+     * Devuelve el id de la encuesta
+     * @param id_encuesta
+     * @return id
+     */
     public Pregunta ll_preguntes(int id_encuesta) {
         return ll_preguntes.get(id_encuesta);
     }
 
+    /**
+     * Se responde interactivamente una encuesta.
+     */
     public void responder_interactivo() {
         Encuesta_Respondida er = new Encuesta_Respondida(this);
         for (Pregunta p : ll_preguntes) {

@@ -4,6 +4,10 @@ import Preguntes.Pregunta;
 
 import java.util.*;
 
+/**
+ * Paula Alemany.
+ */
+
 public class P_Texto extends Pregunta {
 
     /**

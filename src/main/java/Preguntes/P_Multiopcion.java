@@ -5,6 +5,10 @@ import Preguntes.Pregunta;
 import java.util.*;
 import java.lang.*;
 
+/**
+ * Created by Paula Alemany
+ */
+
 
 public class P_Multiopcion extends Pregunta {
 

@@ -19,8 +19,12 @@ import java.util.*;
 
     private static int id_count = 0;
 
+
+    /**
+     * Constructor Encuesta_Respondida interactivo
+     * @param e
+     */
     public Encuesta_Respondida(Encuesta e) {
-        //Se crea una GestionEncuestas.Encuesta_Respondida interactivamente
         Scanner scanner = new Scanner(System.in);
         this.id = id_count;
         ++id_count;
@@ -30,6 +34,11 @@ import java.util.*;
         this.creation_date = Calendar.getInstance();
     }
 
+    /**
+     * Constructor Encuesta_Respondida
+     * @param e
+     * @param name
+     */
     public Encuesta_Respondida(Encuesta e, String name) {
         this.id = id_count;
         ++id_count;
@@ -39,14 +48,23 @@ import java.util.*;
         this.creation_date = Calendar.getInstance();
     }
 
-    public Encuesta_Respondida(String nombre, Calendar creation_date, ArrayList<Respuesta> ll_respuesta, int id_encuesta) {
+
+
+    /*public Encuesta_Respondida(String nombre, Calendar creation_date, ArrayList<Respuesta> ll_respuesta, int id_encuesta) {
         this.id = id_count;
         ++id_count;
         this.name = nombre;
         this.creation_date = creation_date;
         this.ll_respuesta = ll_respuesta;
-    }
+    }*/
 
+    /**
+     * Constructor Encuesta_Respondida
+     * @param e
+     * @param nombre
+     * @param creation_date
+     * @param ll_respuesta
+     */
     public Encuesta_Respondida(Encuesta e, String nombre, Calendar creation_date, ArrayList<Respuesta> ll_respuesta) {
         this.id = id_count;
         ++id_count;
@@ -57,6 +75,11 @@ import java.util.*;
     }
 
     // TODO constructor copiar para generar/inciar centroide a partir de una encuesta_respondida de la nis
+
+    /**
+     * Constructor Encuesta Respondida(dubplica la encuesta Respondida para el centroide)
+     * @param otro
+     */
     public Encuesta_Respondida(Encuesta_Respondida otro) {
         this.id = id_count;
         id_count++;
@@ -66,7 +89,7 @@ import java.util.*;
 
          //  Copiar ll_respusta
         int i = 0;
-        this.ll_respuesta = new ArrayList<Respuesta>();
+        this.ll_respuesta = new ArrayList<>();
         for ( Respuesta respuesta : otro.getLl_respuesta()){
 
             if (respuesta instanceof R_Gradual){
@@ -81,46 +104,90 @@ import java.util.*;
         }
     }
 
+    /**
+     * Getter Id
+     * @return id
+     */
     public int getId() {    //Getter id
         return id;
     }
 
+    /**
+     * Setter Id
+     * @param id
+     */
     public void setId(int id) {     //Setter id
         this.id = id;
     }
 
+    /**
+     * Getter Name
+     * @return name
+     */
     public String getName() {     //Getter Nombre
         return name;
     }
 
+    /**
+     * Setter Name
+     * @param nombre
+     */
     public void setName(String nombre) {      //Setter Nombre
         this.name = nombre;
     }
 
+    /**
+     * Getter Date
+     * @return creation_date
+     */
     public Calendar getDate() {     //Getter Date
         return creation_date;
     }
 
+    /**
+     * Setter Date
+     * @param date
+     */
     public void setDate(Calendar date) {        //Setter Date
         this.creation_date = date;
     }
 
+    /**
+     * Getter ll_respuesta
+     * @return ll_respuesta
+     */
     public ArrayList<Respuesta> getLl_respuesta() {     //Getter ll_respuesta
         return ll_respuesta;
     }
 
+    /**
+     * Setter ll_respuesta
+     * @param ll_respuesta
+     */
     public void setLl_respuesta(ArrayList<Respuesta> ll_respuesta) {        //Setter ll_respuesta
         this.ll_respuesta = ll_respuesta;
     }
 
+    /**
+     * Getter Encuesta
+     * @return encuesta
+     */
     public Encuesta getEncuesta() {
         return encuesta;
     }
 
+    /**
+     * Setter Encuesta
+     * @param encuesta
+     */
     public void setEncuesta(Encuesta encuesta) {
         this.encuesta = encuesta;
     }
 
+    /**
+     * Se responde una pregunta
+     * @param p
+     */
     public void añadir_respuesta_interactivo(Pregunta p){
 
         //System.out.println(p.getEnunciado());
