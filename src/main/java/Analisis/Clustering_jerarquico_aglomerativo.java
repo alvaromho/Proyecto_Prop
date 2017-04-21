@@ -1,105 +1,105 @@
-//package Compartit;
 /**
  * @author Enric F D
  */
-/*
-public class Arbol_completo extends Algoritmo_clustering{
-    	
-  struct cluster{
-  	double[] valors;                            //valores de una respuesta si cluster = 1 elemento, o valores del centroide de los elementos > 1
-	Stack<Int> elementos = new Stack();         // cardinal ref a la Mat_conj_resp, de cada elemento que pertenece al cluster
-  }	
-    
-  private void inicialitzar_cluster_vect(cluster[] c_v, double[][] Mat_conj_resp)  //Inicializamos el vector de clusters assignando cada
-    {									                                            //elemento, enquesta respondida a 1 cluster cons sus valores i 1 elemento
-	cluster[] c_v = new cluster[Mat_conj_resp.size()*2];	                     //en la pila el ordinal de este elemento
-	   c_v.valors = new double[Mat_conj_resp[0].size()]
+package clases;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-        for(int i = 0; i < Mat_conj_resp.size(); i++){			                // el tamaño del vector es 2 veces el num de elementos de t_conj_resp
-		c_v[i].valors = Mat_conj_resp[i*Mat_conj_resp.size()];
-		c_v[i].elementos.push(i);
-	    }
-    }
-	
-  private void inicialitzar_hashmap(HashMap Path, int tam)     //tam == Mat_conj_resp.size()*2
+public class Clustering_jerarquico_aglomerativo extends Analisis{
+
+
+    private int num_clusters_validos, num_cluster_siguiente, Numero_enq_res;
+    private ArrayList<Cluster> lista_perfiles;
+    private HashMap<Integer,Integer> rutas;
+
+    private void inicialitzar_cluster_vect(ArrayList<Encuesta_Respondida> ER)                                //Inicializamos el vector de clusters assignando cada questionario respondido a 1 cluster nuevo creamos n clusters mas vacios
     {
-        for(int i = 0; i < tam; i++)				//inicializamos elementos de Path (cardinal, -2)
-        {    
-            if(i >= tam/2) Path.put(i,-2);          //los espacios destinados a los nuevos clusters incializ a -2
-            else  Path.put(i,-1);                   //los i elementos generan un cluster cada uno incializamos a -1
+        this.num_clusters_validos = this.Numero_enq_res;
+        this.num_cluster_siguiente = this.Numero_enq_res;                                                                    // donde n es el num de questionarios respon
+        for( int i=0; i < this.Numero_enq_res *2 ; i++)
+            if (i < this.Numero_enq_res) {
+                Cluster c_v = new Cluster();
+                ArrayList<Encuesta_Respondida> Arrayauxiliar = new ArrayList<Encuesta_Respondida>();
+                Arrayauxiliar.add(ER.get(i));
+                c_v.agregar_enquestas_respondidas(Arrayauxiliar);
+                c_v.setId_cluster(i);
+                this.lista_perfiles.add(c_v);
+            }
+    }
+
+    private void inicialitzar_hashmap()
+    {
+        for(int i = 0; i < this.Numero_enq_res *2 ; i++)				    //inicializamos elementos de rutas (cardinal, -2)
+        {
+            if(i >= this.Numero_enq_res) this.rutas.put(i, -2);               //los espacios destinados a los nuevos clusters incializ a -2
+            else this.rutas.put(i, -1);                                         //los i elementos generan un cluster cada uno incializamos a -1
         }
     }
-    
-  protected  void genera_arbre_complet(cluster[] c_v, HashMap Path,  double[][] Mat_conj_resp, int num_clusters_def, bool complet, HashMap Path_NC)
+
+    //Constructora
+    public Clustering_jerarquico_aglomerativo(ArrayList<ArrayList<Float>> conj_respuestas, ArrayList<Encuesta_Respondida> ER1)
     {
-      int num_res = c_v.size(); 
-      int cont_clusters = 0;		//contabilizador de los nuevos clusters que se crean, sin contar los de inicio
+        this.Numero_enq_res = ER1.size();
+        this.lista_perfiles = new ArrayList<Cluster>();
+        this.rutas = new HashMap<Integer,Integer>();
+        this.inicialitzar_cluster_vect(ER1);
+        this.inicialitzar_hashmap();
+    }
 
-      if( num_clusters_def > 0) inicialitzar_hashmap(Path_NC, (num_res*2)); //usarem un Path auxiliar en el caso de definir un numero 
-	    									//de clusters de salida
-      inicialitzar_hashmap(Path, (num_res*2));    
-      inicialitzar_cluster_vect(c_v, Mat_conj_resp);   
-	    
-      int cl1 = -2;     int cl2 = -2;    
+// GETERS
+    public ArrayList<Cluster> getLista_perfiles() {
+        return this.lista_perfiles;
+    }
 
-      double[][] Mat_distancies = new double[num_res][num_res]; //cada linia/columna de mat es un cluster donde el elemento  Mat[i][j]
-      						// es la distancia entre clusters , dist entre cluster "i" i el cluster "j"
-      while (cl1!=-1 && cl2!=-1)	//mientras se puedan agrupar clusters do-->			
-      {
-        cl1 = -1;     cl2 = -1;          
+    public int getnum_clusters_validos() {
+        return this.num_clusters_validos;
+    }
 
-        calcul_distancies(&c_v, &Mat_distancies, &Path,  cl1,  cl2); //es tenen en conte els elements que tenen valor -1 del hashmap
- 							//ya sean clusters individuales o agrupaciones, cl1 i cl2 son los ordinales de 
-        Path.put(cl1, num_res+cont_clusters);		//los clusters en question que tienen la menor distancia posible.
-    	Path.put(cl2, num_res+cont_clusters); 		//assignamos la nueva ruta a los clusters que obtenemos de la funcion anterior
-    	Path.put(num_res+cont_clusters, -1);   		//creando un nuevo cluster operativo, i assignandole -1 para tenerlo en cuenta
-	      						//en los posteriores calculos de distancias
-	      
-        c_v[num_res+cont_clusters].elementos.add(cl1);	     //actualizamos la informacion en c_v, del elemento que estamos tratando,
-        c_v[num_res+cont_clusters].elementos.add(cl2);       //añadimos los elementos que conforman el cluster a la pila de esta (el cardinal)
-        calcula_centroide(&c_v[num_res+cont_clusters]);      //recalculamos  el vector valors aplicando las formulas de centroide, "tipo
-        						                            //media calculada" segun los elementos del cluster (que tenemos en la pila)
-        cont_clusters++;				        //inc el numero de clusters operativos que tenemos (no generados x default)
+    //dado un cluster nos dice si este pertenece a uno mayor, es valido si no hay ningun otro que lo agrupe a el i a otros
+    public boolean perfil_valido(int IDCLuster) {
+        if(this.rutas.get(IDCLuster).hashCode() == -1) return true;
+        else return false;
+    }
 
-        If((num_res - cont_clusters) == num_clusters_def) //si el numero de clusters (total) coincide con num_clusters_def que representa
-        {					                            //el numero de clusters que queremos,
-            Path_NC = Path;			                   //Guardamos el Path actual en una variable auxiliar, para poder generar los clusters
-            if(not complet)	{		                    //del nivel que se nos pide
-               cl1 = -1;			                  //forzamos la salida del bucle principal
-                   cl2 = -1;     		             //podriamos ecoger si terminar el arbol i ademas guardar la inf del nivel que definimos
+    //Dados las ids de los 2 clusters mas cercanos, en el momento actual, se crea el nuevo cluster que agrupa los que se nos dan
+    //actualiza la lista de perfiles, crea i define el nuevo Cluster
+    //Actualiza el vector de rutas de los clusters
+    public void Avansa_Clustering(int idCluster1, int idCluster2)
+    {
+        Cluster aux;
+        aux = new Cluster();
+        aux = aux.Combina_clusters(this.lista_perfiles.get(idCluster1), this.lista_perfiles.get(idCluster2));
+        aux.setId_cluster(this.num_cluster_siguiente);
+        aux.Calcular_Centroide();
+
+        this.lista_perfiles.set(this.num_cluster_siguiente, aux);
+
+        this.rutas.put(idCluster1, aux.getId_cluster());
+        this.rutas.put(idCluster2, aux.getId_cluster());
+        this.rutas.put(aux.getId_cluster(), -1);
+
+        this.num_cluster_siguiente++;
+        this.num_clusters_validos--;
+
+        System.out.println(aux.getId_cluster());            //chivatos Driver
+        System.out.println(this.num_cluster_siguiente);
+        System.out.println(this.num_clusters_validos);
+
+    }
+
+    //nos devuelve la lista de Perfiles que son validos (valor en rutas de -1), sera 1 perfil solo si Pedimos 1 Cluster,
+
+    public ArrayList<Cluster> getListaPerfilesValidos()
+    {
+        ArrayList<Cluster> LPV1 = new ArrayList<Cluster>();
+        for (int i = 0; i < this.lista_perfiles.size(); i++) {
+            if (this.rutas.get(i).hashCode() == -1) {
+                LPV1.add(this.lista_perfiles.get(i));
+                System.out.println(LPV1.get(i).getNombre() );  //chivato
             }
         }
-      }  	    
-   }
-    
-     protected  void clusters_x_nivel(int nivell, double[][] Mat_conj_resp, HashMap Path)
-     {
-       cluster[] c_v_n = new cluster[Mat_conj_resp.size()*2];
-       int nivell_aux = nivell;
-       int i = 0;
-       int valor, valor_inicial;
-       valor_inicial = i;
+        return LPV1;
+    }
 
-       while(i < (Mat_conj_resp.size()*2)  //mientras queden elementos de Path do wwhile
-       {
-         while(nivell_aux > 0)		//mientras el cluster que tratamos sea de un nivel del arbol <= que el nivel que se nos da do-->
-         {
-            valor = Path.get(i);
-                            //si valor > -1 significa que hay una ruta, donde el elemento se agrupa en niveles mas altos
-            If(valor > -1)	{				//seguimos mientras se cumpla la condicion de no superar el nivel que se nos da
-                  nivell_aux--; 		//para cada paso en la ruta -- el nivel que nos dan definido,
-                  i = valor;			//avanzamos en la ruta i volvemos a evaluar el nivel
-            }
-
-            Else{				//si es -1 es una ruta ya cerrada, assignamos el elemento al cluster que cierra ruta
-             c_v_n[i].elementos.push(valor_inicial);
-             valor_inicial++;		//seguimos con el siguiente elemento
-             i = valor_inicial;
-             nivell_aux = nivell;		//reseteamos la variable del nivel
-             }
-          }
-        }
-     }
-	 
- }*/
+ }
 
