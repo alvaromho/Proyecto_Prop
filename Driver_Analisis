@@ -1,9 +1,3 @@
-/**
- *
- *Driver Classe Analisis
- *
- *@author Enric.Fresco
- */
 import clases.*;
 import clases.Analisis;
 import clases.Cluster;
@@ -14,6 +8,17 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.*;
 import java.util.ArrayList;
+package clases;
+
+/**
+ *
+ *Driver Classe Analisis
+ *
+ *@author Enric.Fresco
+ */
+
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Driver_Analisis{
 
@@ -49,15 +54,16 @@ public class Driver_Analisis{
         ArrayList<String> a = new ArrayList<String>();
         boolean out = false;
 
-        String op1, op2;
-        ArrayList<Integer> V1 = new ArrayList<Integer>();
-        Muestra m1;
-        h = new Analisis();
-        Analisis An1;
+        String op1;
+        Integer op2 = null;
+        ArrayList<Integer> V1;
+        Muestra m1 = null;
+        h = new Driver_Analisis();
+        Analisis An1 = new Analisis();
         menu();
 
-        while(!out){
-            try{
+        while(!out) {
+            try {
                 String op = scan.nextLine();
                 switch (op) {
 
@@ -67,23 +73,25 @@ public class Driver_Analisis{
 
                     case "01":
 
-                        h = new Analisis();
+                        h = new Driver_Analisis();
                         break;
 
                     case "02":
                         System.out.println("Intruduir nom Analisis");
                         op1 = scan.nextLine();
                         System.out.println("Intruduir tipus Analisis");
-                        op2 = scan.nextLine();
-                        An1 = new Analisis(op1, op2, m1);
+                        String opp22 = scan.nextLine();
+                        Integer int11;
+
+                        An1 = new Analisis(op1, 77, m1);
                         break;
 
                     case "03":
-                        System.out.println(" "An1.getNombre_analisis()" ");
+                        System.out.println(An1.getNombre_analisis());
                         break;
 
                     case "04":
-                        System.out.println(" " An1.getTipo_analisis()" ");
+                        System.out.println(An1.getTipo_analisis());
                         break;
 
                     case "05":
@@ -95,36 +103,36 @@ public class Driver_Analisis{
                     case "06":
                         System.out.println("Intruduir nou Tipus Analisis");
                         op1 = scan.nextLine();
-                        An1.setTipo_analisis(op1);
+                        int opp11 = new Integer(op1);
+                        An1.setTipo_analisis(opp11);
                         break;
-
 
 
                     case "07":
                         op = scan.nextLine();
-                        h.writeTextFile(op, a);
+
                         break;
 
                     case "08":
                         op = scan.nextLine();
-                        h.writeTextFile(op, a);
+
                         break;
 
                     case "09":
                         op = scan.nextLine();
-                        h.writeTextFile(op, a);
+
                         break;
 
                     case "10":
-                        V1 = An1.Clusters_con_menor_distancia()
-                        System.out.println(V1.get(0)  "  i   "V1.get(1));
+                        V1  = new ArrayList<Integer>( An1.Clusters_con_menor_distancia());
+                        System.out.println(V1.get(0));
+                        System.out.println(V1.get(1));
                         break;
 
-                    Genera_arbre_concret
                     case "11":
                         System.out.println("Intruduir nombre de Clusters desitjats si valor <= 1 es generera tot l'Arbre");
                         op1 = scan.nextLine();
-                        An1.Genera_arbre_concret(op1);
+                        An1.Genera_arbre_concret(new Integer(op1));
                         break;
 
                     case "12":
@@ -136,8 +144,10 @@ public class Driver_Analisis{
                         break;
 
                     case "14":
-                        V1 = An1.Clusters_con_menor_distancia()
-                        System.out.println(V1.get(0)  "  i   "V1.get(1));
+                        V1 = An1.Clusters_con_menor_distancia();
+                        System.out.println(V1.get(0));
+                        System.out.println("\n \t");
+                        System.out.println(V1.get(1));
                         break;
 
                     case "15":
@@ -146,18 +156,19 @@ public class Driver_Analisis{
                         Cluster C2 = new Cluster();
                         C1.Combina_clusters(C1, C2);
 
-                        V1 = An1.Clusters_con_menor_distancia()
-                        System.out.println(V1.get(0)  "  i   "V1.get(1));
+                        V1 = An1.Clusters_con_menor_distancia();
+                        System.out.println(V1.get(0));
+                        System.out.println(V1.get(1));
                         break;
 
                     default:
                         System.out.println("Opció no valida.");
                         break;
                 }
-            }catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
-            }
-            finally{
+
+            } finally {
                 //S'executa SEMPRE.
             }
         }
