@@ -1,3 +1,9 @@
+package Respostes;
+
+
+import GestionEncuestas.Encuesta_Respondida;
+import Preguntes.P_Multiopcion;
+
 import java.util.*;
 
 /**
@@ -146,7 +152,7 @@ public class R_Multiopcion extends Respuesta {
         return (float) 1 - (float) (interseccion_conjuntos_iguales) / (float) (union_conjuntos_respuesta);
     }
 
-    public boolean [] calcular_moda_uniopcion( ArrayList<Encuesta_Respondida> lista_encuesta_respondida, int index_respuesta){
+    public boolean [] calcular_moda_uniopcion(ArrayList<Encuesta_Respondida> lista_encuesta_respondida, int index_respuesta){
         // Cantidad de alternativas en la pregunta
         boolean[] valor = (boolean[]) lista_encuesta_respondida.get(0).getLl_respuesta().get(index_respuesta).getValor();
         int cantidad_alternativas = valor.length;

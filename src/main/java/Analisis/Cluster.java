@@ -1,3 +1,9 @@
+package Analisis;
+
+import GestionEncuestas.Encuesta;
+import GestionEncuestas.Encuesta_Respondida;
+import Respostes.*;
+
 import java.util.ArrayList;
 
 /**
@@ -12,7 +18,7 @@ public class Cluster {
     private int id_cluster;                                     // ID_KEY
     private String nombre;
     private ArrayList<Encuesta_Respondida> lista_encuesta_respondida;    //Lista de Encuestas respondidas asociadas al cluster
-    private Encuesta_Respondida  centroide;                               //Centroide del Cluster
+    private Encuesta_Respondida centroide;                               //Centroide del Cluster
 
 
 
@@ -85,10 +91,10 @@ public class Cluster {
 
 
 
-//    TODO funcion get moda de una muestra (array list Encuesta respondida)
-//    public int getModa_pregunta_multipcion(ArrayList<Encuesta_Respondida> lista_encuestas_respondidas, int index_pregunta){
+//    TODO funcion get moda de una muestra (array list GestionEncuestas.Encuesta respondida)
+//    public int getModa_pregunta_multipcion(ArrayList<GestionEncuestas.Encuesta_Respondida> lista_encuestas_respondidas, int index_pregunta){
 //        int contador =
-//        for ( Encuesta_Respondida encuesta_respondida : lista_encuestas_respondidas){
+//        for ( GestionEncuestas.Encuesta_Respondida encuesta_respondida : lista_encuestas_respondidas){
 //
 //        }
 //        return 0;

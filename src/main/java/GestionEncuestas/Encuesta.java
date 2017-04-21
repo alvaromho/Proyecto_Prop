@@ -1,6 +1,7 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+package GestionEncuestas;
+
+import Preguntes.*;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
@@ -90,8 +91,8 @@ public class    Encuesta {
         this.ll_encuestas_respondidas = ll_encuestas_respondidas;
     }
 
-    /*Parte de Importar Encuesta
-    public Encuesta(String nom_ficher) throws IOException {
+    /*Parte de Importar GestionEncuestas.Encuesta
+    public GestionEncuestas.Encuesta(String nom_ficher) throws IOException {
         //Dado un txt importa una encuesta
         FileReader fr = new FileReader(nom_ficher);
         BufferedReader bf = new BufferedReader(fr);
@@ -114,7 +115,7 @@ public class    Encuesta {
                     for (int i = 0; i < n; ++i) {
                         opciones.add(bf.readLine());
                     }
-                    P_Gradual pg = new P_Gradual(enunciado, opciones);
+                    Preguntes.P_Gradual pg = new Preguntes.P_Gradual(enunciado, opciones);
                     ll_preguntes.add(pg);
                     break;
                 case 2:
@@ -128,7 +129,7 @@ public class    Encuesta {
                     //Leemos el minimo i el maximo de alternativas a escoger
                     int min_alternativas = Integer.parseInt(bf.readLine());
                     int max_alternativas = Integer.parseInt(bf.readLine());
-                    P_Multiopcion pm = new P_Multiopcion(enunciado, min_alternativas, max_alternativas, opciones);
+                    Preguntes.P_Multiopcion pm = new Preguntes.P_Multiopcion(enunciado, min_alternativas, max_alternativas, opciones);
                     ll_preguntes.add(pm);
                     break;
 
@@ -136,27 +137,27 @@ public class    Encuesta {
                     //Leemos valor minimo y maximo posible
                     int min = Integer.parseInt(bf.readLine());
                     int max = Integer.parseInt(bf.readLine());
-                    P_Numerico pn = new P_Numerico(enunciado, min, max);
+                    Preguntes.P_Numerico pn = new Preguntes.P_Numerico(enunciado, min, max);
                     ll_preguntes.add(pn);
                     break;
 
                 case 4:
                     //Leemos el max de chars k tendra la respuesta
                     int max_length = Integer.parseInt(bf.readLine());
-                    P_Texto pt = new P_Texto(enunciado, max_length);
+                    Preguntes.P_Texto pt = new Preguntes.P_Texto(enunciado, max_length);
                     ll_preguntes.add(pt);
                     break;
                 default:
-                   // System.out.println("Encuesta no correcta");
+                   // System.out.println("GestionEncuestas.Encuesta no correcta");
                     break;
             }
-            //System.out.println("Seguent Pregunta a introduir: ");
+            //System.out.println("Seguent Preguntes.Pregunta a introduir: ");
             //Volvemos a leer el tipo de pregunta que se quiere crear
             tipus_pregunta = Integer.parseInt(bf.readLine());
         }
         //Cerramos el fichero
         bf.close();
-        System.out.println("Encuesta creada correctamente");
+        System.out.println("GestionEncuestas.Encuesta creada correctamente");
     }*/
 
     public int getId() {    //GetterId
@@ -210,7 +211,7 @@ public class    Encuesta {
         return ll_preguntes.add(pregunta);
     }
 
-    public boolean modificar_pregunta(Pregunta pregunta_old, Pregunta pregunta_new){
+    public boolean modificar_pregunta(Pregunta pregunta_old, Pregunta pregunta_new) {
     //Se reemplaza una pregunta por otra, devuelve true si la pregunta_old se encuera en ll_preguntes, false en caso contrario
         int index = ll_preguntes.indexOf(pregunta_old);
         if (index == -1) return false;
@@ -218,7 +219,7 @@ public class    Encuesta {
         return true;
     }
 
-    public void modificar_pregunta_indice(int index, Pregunta pregunta_new){
+    public void modificar_pregunta_indice(int index, Pregunta pregunta_new) {
         //Se reemplaza una pregunta por otra, devuelve true si se ejecuta correctamente, false en caso contrario
         ll_preguntes.set(index, pregunta_new);
     }
@@ -234,16 +235,16 @@ public class    Encuesta {
             er.añadir_respuesta_interactivo(p);
         }
         ll_encuestas_respondidas.add(er);
-        System.out.println("Encuesta Respondida Correctamente");
+        System.out.println("GestionEncuestas.Encuesta Respondida Correctamente");
     }
 
     /*public void responder_importar(String nom_ficher, BufferedReader bf) throws IOException {
         String name = bf.readLine();
-        Encuesta_Respondida er = new Encuesta_Respondida(this, name);
-        for (Pregunta p : ll_preguntes) {
+        GestionEncuestas.Encuesta_Respondida er = new GestionEncuestas.Encuesta_Respondida(this, name);
+        for (Preguntes.Pregunta p : ll_preguntes) {
             er.añadir_respuesta_importar(p, nom_ficher, bf);
         }
         ll_encuestas_respondidas.add(er);
-        System.out.println("Encuesta Respondida Correctamente");
+        System.out.println("GestionEncuestas.Encuesta Respondida Correctamente");
     }*/
 }

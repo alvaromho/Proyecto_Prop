@@ -1,3 +1,7 @@
+package Preguntes;
+
+import Preguntes.Pregunta;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 

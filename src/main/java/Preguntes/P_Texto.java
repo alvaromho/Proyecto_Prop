@@ -1,3 +1,7 @@
+package Preguntes;
+
+import Preguntes.Pregunta;
+
 import java.util.*;
 
 public class P_Texto extends Pregunta {

@@ -1,5 +1,8 @@
-import java.io.*;
-import java.io.IOException;
+package GestionEncuestas;
+
+import Preguntes.*;
+import Respostes.*;
+
 import java.util.*;
 
 /**
@@ -17,7 +20,7 @@ import java.util.*;
     private static int id_count = 0;
 
     public Encuesta_Respondida(Encuesta e) {
-        //Se crea una Encuesta_Respondida interactivamente
+        //Se crea una GestionEncuestas.Encuesta_Respondida interactivamente
         Scanner scanner = new Scanner(System.in);
         this.id = id_count;
         ++id_count;
@@ -25,7 +28,6 @@ import java.util.*;
         System.out.println("Introduce tu nombre:");
         this.name = scanner.next();
         this.creation_date = Calendar.getInstance();
-
     }
 
     public Encuesta_Respondida(Encuesta e, String name) {
@@ -149,60 +151,60 @@ import java.util.*;
     }
 
     /*
-    public void añadir_respuesta(P_Gradual p) {
+    public void añadir_respuesta(Preguntes.P_Gradual p) {
         System.out.println("Gradual");
     }
 
-    public void añadir_respuesta(P_Multiopcion p) {
+    public void añadir_respuesta(Preguntes.P_Multiopcion p) {
         System.out.println("MultiOpcion");
     }
 
-    public void añadir_respuesta(P_Numerico p) {
+    public void añadir_respuesta(Preguntes.P_Numerico p) {
         System.out.println("Numerico");
     }
 
-    public void añadir_respuesta(P_Texto p) {
+    public void añadir_respuesta(Preguntes.P_Texto p) {
         System.out.println("Texto");
     }*/
 
-    /*Comentado por importar Respuesta
-    public void añadir_respuesta_importar(Pregunta p, String nom_ficher, BufferedReader bf) throws IOException {
+    /*Comentado por importar Respostes.Respuesta
+    public void añadir_respuesta_importar(Preguntes.Pregunta p, String nom_ficher, BufferedReader bf) throws IOException {
         String nombre_encuesta = bf.readLine();
-        if (p instanceof P_Gradual) {
+        if (p instanceof Preguntes.P_Gradual) {
             //System.out.println("Gradual");
             int valor = Integer.parseInt(bf.readLine());
             boolean nc = false;
             if (valor == -1) nc = true;
-            R_Gradual rg = new R_Gradual((P_Gradual) p, nc, valor);
+            Respostes.R_Gradual rg = new Respostes.R_Gradual((Preguntes.P_Gradual) p, nc, valor);
             this.ll_respuesta.add(rg);
         }
-        else if (p instanceof P_Multiopcion) {
+        else if (p instanceof Preguntes.P_Multiopcion) {
             //System.out.println("MultiOpcion");
             boolean nc = true;
-            int n = ((P_Multiopcion) p).getSizeEncunciado_Opcion();
+            int n = ((Preguntes.P_Multiopcion) p).getSizeEncunciado_Opcion();
             boolean[] respuesta_bool = new boolean[n];
             for (int i = 0; i < n; ++i) {
                 boolean aux = (Integer.parseInt(bf.readLine()) == 1);
                 respuesta_bool[i] = aux;
                 if (aux) nc = false;
             }
-            R_Multiopcion rm = new R_Multiopcion((P_Multiopcion) p, nc, respuesta_bool);
+            Respostes.R_Multiopcion rm = new Respostes.R_Multiopcion((Preguntes.P_Multiopcion) p, nc, respuesta_bool);
             this.ll_respuesta.add(rm);
         }
-        else if (p instanceof P_Numerico) {
+        else if (p instanceof Preguntes.P_Numerico) {
             //System.out.println("Numerico");
             int valor = Integer.parseInt(bf.readLine());
             boolean nc = false;
             if (valor == -1) nc = true;
-            R_Numerico rn = new R_Numerico((P_Numerico) p, nc, valor);
+            Respostes.R_Numerico rn = new Respostes.R_Numerico((Preguntes.P_Numerico) p, nc, valor);
             this.ll_respuesta.add(rn);
         }
-        else if (p instanceof P_Texto) {
+        else if (p instanceof Preguntes.P_Texto) {
             //System.out.println("Texto");
             String texto = bf.readLine();
             boolean nc = false;
             if (texto == "-") nc = true;
-            R_Texto rt = new R_Texto((P_Texto) p, nc, texto);
+            Respostes.R_Texto rt = new Respostes.R_Texto((Preguntes.P_Texto) p, nc, texto);
             this.ll_respuesta.add(rt);
         }
         else System.out.println("Normal");
@@ -210,7 +212,7 @@ import java.util.*;
     }
 
 
-    public void modificar_respuesta(int index, Respuesta respuesta_new) {
+    public void modificar_respuesta(int index, Respostes.Respuesta respuesta_new) {
     //Se modifica la respuesta situada en la posicio index por respuesta_new.
         ll_respuesta.set(index, respuesta_new);
 

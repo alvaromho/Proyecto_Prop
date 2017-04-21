@@ -1,3 +1,5 @@
+package Preguntes;
+
 import java.util.Scanner;
 
 /**
@@ -15,7 +17,7 @@ public class Pregunta {
     public Pregunta() {
         this.id = id_count;
         ++id_count;
-        System.out.println("Introduce el enunciado para la Pregunta:");
+        System.out.println("Introduce el enunciado para la Preguntes.Pregunta:");
         Scanner scanner = new Scanner(System.in);
         this.enunciado = scanner.next();
     }

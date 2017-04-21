@@ -1,3 +1,8 @@
+package Analisis;
+
+import GestionEncuestas.Encuesta_Respondida;
+import Respostes.Respuesta;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 

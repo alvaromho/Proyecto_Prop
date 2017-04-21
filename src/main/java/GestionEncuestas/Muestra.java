@@ -1,3 +1,9 @@
+package GestionEncuestas;
+
+import GestionEncuestas.Encuesta;
+import Preguntes.Pregunta;
+import Respostes.Respuesta;
+
 import java.util.*;
 import java.lang.*;
 
@@ -62,7 +68,7 @@ public class Muestra {
 
     /**
      * Devuelve el nombre de la encuesta a la que corresponde la encuestas respondidas que tomamos como muestra
-     * @return El nombre de la Encuesta.
+     * @return El nombre de la GestionEncuestas.Encuesta.
      */
     public String consultar_nombre_encuesta(){
         return this.encuesta.getName();
@@ -77,7 +83,7 @@ public class Muestra {
     }
 
     /**
-     * Modifica la lista de respuestas que tenemos como atributo de la clase Muestra por una que pasamos como parametro.
+     * Modifica la lista de respuestas que tenemos como atributo de la clase GestionEncuestas.Muestra por una que pasamos como parametro.
      * @param EncuestasRespondidas
      */
     public void set_lista_respuestas(ArrayList<Encuesta_Respondida> EncuestasRespondidas){
@@ -101,7 +107,7 @@ public class Muestra {
 
     /**
      * Devuelve la encuesta que tenemos en esta clase.
-     * @return Encuesta
+     * @return GestionEncuestas.Encuesta
      */
     public Encuesta getEncuesta() {
         return encuesta;

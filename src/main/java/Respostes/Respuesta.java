@@ -1,3 +1,8 @@
+package Respostes;
+
+import GestionEncuestas.Encuesta_Respondida;
+import Preguntes.Pregunta;
+
 import java.util.ArrayList;
 
 /**
