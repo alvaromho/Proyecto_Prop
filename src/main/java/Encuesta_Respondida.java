@@ -165,6 +165,7 @@ import java.util.*;
         System.out.println("Texto");
     }*/
 
+    /*Comentado por importar Respuesta
     public void añadir_respuesta_importar(Pregunta p, String nom_ficher, BufferedReader bf) throws IOException {
         String nombre_encuesta = bf.readLine();
         if (p instanceof P_Gradual) {
@@ -213,7 +214,7 @@ import java.util.*;
     //Se modifica la respuesta situada en la posicio index por respuesta_new.
         ll_respuesta.set(index, respuesta_new);
 
-    }
+    }*/
 
 
 

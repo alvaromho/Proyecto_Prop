@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+/**
+ * Created by polmoyabetriu.
+ */
+
 public class Pregunta {
 
     protected int id;

@@ -15,9 +15,19 @@ public class P_Texto extends Pregunta {
      * Constructora interactiva, se crea a partir de los datos que se introducen al seguir los pasos que se van mostrando en pantalla.
      */
     public P_Texto() {
-        System.out.println("Introduce el tamaño maximo del texto:");
         Scanner scanner = new Scanner(System.in);
-        this.max_length = scanner.nextInt();
+        int max_length = -1;
+        boolean b = false;
+        while (b == false) {
+            System.out.println("Introduce el tamaño maximo del texto:");
+            try {
+                max_length = Integer.parseInt(scanner.next());
+                b = true;
+            } catch (NumberFormatException nfe) {
+                System.out.println("Format incorrecte");
+            }
+        }
+        this.max_length = max_length;
         if(max_length < 0){
             System.out.println("Error, el nombre de caracters del text no pot ser un valor negatiu.");
         }

@@ -15,20 +15,28 @@ public class P_Numerico extends Pregunta {
      */
     public P_Numerico() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Introduce el numero maximo que se puede responder: ");
-        int max = scanner.nextInt();
+        boolean b = false;
+        int max = -1;
+        while (b == false) {
+            System.out.println("Introduce el numero maximo que se puede responder: ");
+            try {
+                max = Integer.parseInt(scanner.next());
+                b = true;
+            } catch (NumberFormatException nfe) {
+                System.out.println("Format incorrecte");
+            }
+        }
         this.max = max;
         System.out.println("Introduce el numero minimo que se puede responder: ");
         int min = scanner.nextInt();
         this.min = min;
-        if(max < min or max < 0 or min < 0){
+        if(max < min){
             System.out.println("Error! Los valores introducidos no son correctos. Recuerda: Los valores deben ser positivos y el valor minimo debe ser mas pequeño o igual que el maximo.\n Por favor, vuelve a introducir el valor maximo: ");
             max = scanner.nextInt();
             this.max = max;
             System.out.println("Ahora introduzca el valor minimo: ");
             min = scanner.nextInt();
             this.min = min;
-
         }
     }
 

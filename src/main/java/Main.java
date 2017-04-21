@@ -31,11 +31,12 @@ public class Main {
                     break;
                 case 2:
                     //Importar Encuesta
-                    System.out.println("Inserta el nombre del fichero");
+                    /*System.out.println("Inserta el nombre del fichero");
                     nom_ficher = scanner.next();
                     e = new Encuesta(nom_ficher);
                     ll_encuestas.add(e);
                     break;
+                    */
                 case 3:
                     //Responder Encuesta Interactivo
                     System.out.println("Inserta el id de l'encuesta que quiere responder");
@@ -45,14 +46,14 @@ public class Main {
                     break;
                 case 4:
                     //Importar Respuesta
-                    System.out.println("Inserta el nombre del fichero");
+                    /*System.out.println("Inserta el nombre del fichero");
                     nom_ficher = scanner.next();
                     FileReader fr = new FileReader(nom_ficher);
                     BufferedReader bf = new BufferedReader(fr);
                     respondemos = Integer.parseInt(bf.readLine());
                     e = ll_encuestas.get(respondemos);
                     e.responder_importar(nom_ficher, bf);
-                    break;
+                    break;*/
                 default:
                     System.out.println("Opcion no valida");
                     break;

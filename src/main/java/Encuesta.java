@@ -37,33 +37,48 @@ public class    Encuesta {
         System.out.println("4: Tipo Texto(respuesta libre)");
         System.out.println("5: Consultar encuesta");
         System.out.println("0: Fi");
-        int tipus_pregunta = Integer.parseInt(scanner.next());
-        while (tipus_pregunta != 0) {
-            switch (tipus_pregunta) {
-                case 1:
-                    P_Gradual pg = new P_Gradual();
-                    ll_preguntes.add(pg);
-                    break;
-                case 2:
-                    P_Multiopcion pm = new P_Multiopcion();
-                    ll_preguntes.add(pm);
-                    break;
-
-                case 3:
-                    P_Numerico pn = new P_Numerico();
-                    ll_preguntes.add(pn);
-                    break;
-
-                case 4:
-                    P_Texto pt = new P_Texto();
-                    ll_preguntes.add(pt);
-                    break;
-                default:
-                    System.out.println("Opcio no vàlida");
-                    break;
-            }
-            System.out.println("Seguent Pregunta a introduir: ");
+        int tipus_pregunta = 0;
+        try {
             tipus_pregunta = Integer.parseInt(scanner.next());
+        } catch (NumberFormatException nfe) {
+            System.out.println("Format incorrecte");
+        }
+        while (tipus_pregunta != 0) {
+                switch (tipus_pregunta) {
+                    case 1:
+                        P_Gradual pg = new P_Gradual();
+                        ll_preguntes.add(pg);
+                        break;
+                    case 2:
+                        P_Multiopcion pm = new P_Multiopcion();
+                        ll_preguntes.add(pm);
+                        break;
+
+                    case 3:
+                        P_Numerico pn = new P_Numerico();
+                        ll_preguntes.add(pn);
+                        break;
+
+                    case 4:
+                        P_Texto pt = new P_Texto();
+                        ll_preguntes.add(pt);
+                        break;
+                    default:
+                        System.out.println("Opcio no vàlida");
+                        break;
+                }
+            System.out.println("Introduce un numero para escoger el tipo de pregunta que quieres crear: ");
+            System.out.println("1: Tipo Gradual");
+            System.out.println("2: Tipo Multiopcion");
+            System.out.println("3: Tipo Numerico");
+            System.out.println("4: Tipo Texto(respuesta libre)");
+            System.out.println("5: Consultar encuesta");
+            System.out.println("0: Fi");
+            try {
+                tipus_pregunta = Integer.parseInt(scanner.next());
+            } catch (NumberFormatException nfe) {
+                System.out.println("Format incorrecte");
+            }
         }
     }
 
@@ -75,14 +90,11 @@ public class    Encuesta {
         this.ll_encuestas_respondidas = ll_encuestas_respondidas;
     }
 
+    /*Parte de Importar Encuesta
     public Encuesta(String nom_ficher) throws IOException {
         //Dado un txt importa una encuesta
         FileReader fr = new FileReader(nom_ficher);
         BufferedReader bf = new BufferedReader(fr);
-        /*String sCadena;
-        while ((sCadena = bf.readLine())!=null) {
-            System.out.println(sCadena);
-        }*/
         this.id = id_count;
         ++id_count;
         System.out.println("Id:" + this.id);
@@ -145,7 +157,7 @@ public class    Encuesta {
         //Cerramos el fichero
         bf.close();
         System.out.println("Encuesta creada correctamente");
-    }
+    }*/
 
     public int getId() {    //GetterId
         return id;
@@ -225,7 +237,7 @@ public class    Encuesta {
         System.out.println("Encuesta Respondida Correctamente");
     }
 
-    public void responder_importar(String nom_ficher, BufferedReader bf) throws IOException {
+    /*public void responder_importar(String nom_ficher, BufferedReader bf) throws IOException {
         String name = bf.readLine();
         Encuesta_Respondida er = new Encuesta_Respondida(this, name);
         for (Pregunta p : ll_preguntes) {
@@ -233,5 +245,5 @@ public class    Encuesta {
         }
         ll_encuestas_respondidas.add(er);
         System.out.println("Encuesta Respondida Correctamente");
-    }
+    }*/
 }
