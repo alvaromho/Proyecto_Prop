@@ -28,15 +28,15 @@ public class Analisis {
 
         Encuesta_Respondida ER1 = new Encuesta_Respondida();
         ArrayList<Encuesta_Respondida> Enq_R;
-        Enq_R = M1.get_Lista_todas_Respuestas_Enquesta();
+        Enq_R = this.M1.get_Lista_todas_Respuestas_Enquesta();
         Float distancia_min = (float) -1;
 
         for (int i = 0; i < Enq_R.size(); i++){
 
             ER1 = new Encuesta_Respondida(cluster1.getCentroide());
-            if (distancia_min > distancia(ER1, Enq_R.get(i)) || distancia_min == -1 )
+            if (distancia_min > this.distancia(ER1, Enq_R.get(i)) || distancia_min == -1 )
             {
-                distancia_min =  distancia(ER1, Enq_R.get(i));
+                distancia_min = this.distancia(ER1, Enq_R.get(i));
                 ER1 = Enq_R.get(i);
             }
         }
@@ -48,8 +48,8 @@ public class Analisis {
      *  Constructor vacio/inicializa
      */
     public Analisis() {
-        this.nombre_analisis = "sin_nombre";
-        this.tipo_analisis = 0;
+        nombre_analisis = "sin_nombre";
+        tipo_analisis = 0;
     }
 
     /**
@@ -59,17 +59,17 @@ public class Analisis {
     {
         this.nombre_analisis = nombre_analisis;
         this.tipo_analisis = tipo_analisis;
-        M1 = Muestra1;
+        this.M1 = Muestra1;
         ArrayList<Encuesta_Respondida> EResp;
-        EResp = M1.get_lista_respuesta();
-        CJA = new Clustering_jerarquico_aglomerativo(Transforma_vectdeFLoats(EResp), EResp);
+        EResp = this.M1.get_lista_respuesta();
+        this.CJA = new Clustering_jerarquico_aglomerativo(this.Transforma_vectdeFLoats(EResp), EResp);
 
                                                          // Comprobar que el nombre sea único.
-        if (!Comprobar_nombre_unico(nombre_analisis)){
+        if (!this.Comprobar_nombre_unico(nombre_analisis)){
             System.out.println("\nombre utilizado");
             throw new IllegalArgumentException("El nombre ingresado ya existe.");
         }
-        lista_nombres.add(nombre_analisis);
+        Analisis.lista_nombres.add(nombre_analisis);
 
 
     }
@@ -80,14 +80,14 @@ public class Analisis {
      */
 
     public String getNombre_analisis() {
-        return nombre_analisis;
+        return this.nombre_analisis;
     }
     public void setNombre_analisis(String nombre_analisis) {
         this.nombre_analisis = nombre_analisis;
     }
 
     public int getTipo_analisis() {
-        return tipo_analisis;
+        return this.tipo_analisis;
     }
 
     public void setTipo_analisis(int tipo_analisis) {
@@ -103,7 +103,7 @@ public class Analisis {
     public boolean Comprobar_nombre_unico(String nuevo_nombre) {
         System.out.println("Ejecutando: Comprobar_nombre_unico_analisis");
 
-        for(String nombre : lista_nombres) {
+        for(String nombre : Analisis.lista_nombres) {
             if(nombre.compareTo(nuevo_nombre) == 0 ) return false;
         }
 
@@ -112,20 +112,20 @@ public class Analisis {
 
     public void print_nombres()
     {
-        for(String nombre : lista_nombres)
+        for(String nombre : Analisis.lista_nombres)
             System.out.println(nombre);
     }
 
     public void print_representantes()
     {
-        for(int i = 0; i < lista_representates_delos_perfiles.size(); i++) System.out.println(lista_representates_delos_perfiles.get(i).getId());
+        for(int i = 0; i < this.lista_representates_delos_perfiles.size(); i++) System.out.println(this.lista_representates_delos_perfiles.get(i).getId());
     }
 
     public void print_Lista_perfiles_validos()
     {
-        for(int i = 0; i < lista_representates_delos_perfiles.size(); i++) {
-            System.out.println(lista_perfiles_validos.get(i).getCentroide());
-            System.out.println(lista_perfiles_validos.get(i).getNombre());
+        for(int i = 0; i < this.lista_representates_delos_perfiles.size(); i++) {
+            System.out.println(this.lista_perfiles_validos.get(i).getCentroide());
+            System.out.println(this.lista_perfiles_validos.get(i).getNombre());
         }
     }
 
@@ -187,22 +187,22 @@ public class Analisis {
 
         Float distancia_min = (float) -1;
         ArrayList<Cluster> lista_perfiles1;
-        lista_perfiles1 = CJA.getLista_perfiles();
+        lista_perfiles1 = this.CJA.getLista_perfiles();
 
         int j;
 
         for(int i = 0; i < lista_perfiles1.size(); i++) {
-            while (!CJA.perfil_valido(lista_perfiles1.get(i).getId_cluster())){ i++;}
+            while (!this.CJA.perfil_valido(lista_perfiles1.get(i).getId_cluster())){ i++;}
 
             clu1 = lista_perfiles1.get(i);
 
             for (j = i+1; j < lista_perfiles1.size(); j++) {
-                while (!CJA.perfil_valido(lista_perfiles1.get(j).getId_cluster())) j++;
+                while (!this.CJA.perfil_valido(lista_perfiles1.get(j).getId_cluster())) j++;
 
                 clu2 = lista_perfiles1.get(j);
 
-                if (distancia_min > distancia(clu1.getCentroide(), clu2.getCentroide()) || distancia_min == -1 ) {
-                    distancia_min = distancia(clu1.getCentroide(), clu2.getCentroide());
+                if (distancia_min > this.distancia(clu1.getCentroide(), clu2.getCentroide()) || distancia_min == -1 ) {
+                    distancia_min = this.distancia(clu1.getCentroide(), clu2.getCentroide());
                     clust1Fi = clu1;
                     clust2Fi = clu2;
                 }
@@ -226,18 +226,18 @@ public class Analisis {
     {
         ArrayList<Integer> Clusters_mas_cercanos= new ArrayList<Integer>();
 
-        while (CJA.getnum_clusters_validos() > num_clusters_def)
+        while (this.CJA.getnum_clusters_validos() > num_clusters_def)
         {
-            Clusters_mas_cercanos = Clusters_con_menor_distancia();
+            Clusters_mas_cercanos = this.Clusters_con_menor_distancia();
 
             System.out.println(Clusters_mas_cercanos.get(0));
             System.out.println(Clusters_mas_cercanos.get(1));         //CHivato Driver
 
-            CJA.Avansa_Clustering(Clusters_mas_cercanos.get(0), Clusters_mas_cercanos.get(1));
+            this.CJA.Avansa_Clustering(Clusters_mas_cercanos.get(0), Clusters_mas_cercanos.get(1));
 
         }
-        lista_perfiles_validos = (CJA.getListaPerfilesValidos());
-        Assignar_representantes();
+        this.lista_perfiles_validos = CJA.getListaPerfilesValidos();
+        this.Assignar_representantes();
     }
 
 
@@ -249,9 +249,9 @@ public class Analisis {
 
     public void Assignar_representantes()
     {
-        for (int i = 0; i < lista_perfiles_validos.size(); i++)
+        for (int i = 0; i < this.lista_perfiles_validos.size(); i++)
         {
-         lista_representates_delos_perfiles.set(i, Busca_representante(lista_perfiles_validos.get(i)));
+            this.lista_representates_delos_perfiles.set(i, this.Busca_representante(this.lista_perfiles_validos.get(i)));
         }
 
     }
