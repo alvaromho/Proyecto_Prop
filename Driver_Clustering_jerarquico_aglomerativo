@@ -1,18 +1,16 @@
-import clases.Clustering_jerarquico_aglomerativo;
-import clases.Encuesta_Respondida;
 
-import java.lang.Float;
+package clases;
 import java.util.ArrayList;
-
+import java.util.Scanner;
 /**
  *
  *Driver Controlador Domini Classe Recurs
  *
- *@author Enric.Fresco
+ *@author Enric F. D
  */
 public class Driver_Clustering_jerarquico_aglomerativo{
 
-    private static Driver_Clustering_jerarquico_aglomerativo h;
+    private static Driver_Clustering_jerarquico_aglomerativo DcJa;
 
     public static void menu() {
         System.out.println("Escolllir opción:");
@@ -34,10 +32,10 @@ public class Driver_Clustering_jerarquico_aglomerativo{
         ArrayList<String> a = new ArrayList<String>();
         boolean out = false;
 
-        ArrayList<Encuesta_Respondida> ERS1;
-        ArrayList<ArrayList<Float>> ALF1;
-        Clustering_jerarquico_aglomerativo CJA1;
-        menu();
+        ArrayList<Encuesta_Respondida> ERS1 = null;
+        ArrayList<ArrayList<Float>> ALF1 = null;
+        Clustering_jerarquico_aglomerativo CJA1 = null;
+        Driver_Clustering_jerarquico_aglomerativo.menu();
 
         while(!out){
             try{
@@ -46,19 +44,19 @@ public class Driver_Clustering_jerarquico_aglomerativo{
 
                     case "01":
 
-                       CJA1 = new Clustering_jerarquico_aglomerativo(ALF1, ERS1);
-                        CJA1.print_Lista_perfiles_validos()"\n";
+                       CJA1 = new Clustering_jerarquico_aglomerativo(null, ERS1);
+                        CJA1.print_Lista_perfiles_validos();
                         CJA1.print_representantes();
                         break;
 
                     case "02":
-                        System.out.println( CJA1.getnum_clusters_validos()"\n");
+                        System.out.println( CJA1.getnum_clusters_validos());
                         break;
 
                     case "03":
                         System.out.println("Indruduir una ID valida de un cluster\n");
                         op = scan.nextLine();
-                        System.out.println(CJA1.perfil_valido(int(op)"\n");
+                        System.out.println(77);
                         break;
 
                     case "04":
