@@ -1,0 +1,167 @@
+/**
+ *
+ *Driver Classe Analisis
+ *
+ *@author Enric.Fresco
+ */
+import clases.*;
+import clases.Analisis;
+import clases.Cluster;
+import clases.Encuesta_Respondida;
+import clases.Muestra;
+
+import java.lang.Integer;
+import java.lang.String;
+import java.util.*;
+import java.util.ArrayList;
+
+public class Driver_Analisis{
+
+    private static Driver_Analisis h;
+
+    public static void menu() {
+        System.out.println("Escolllir opción:");
+        System.out.println("\t 00) Salida.");
+        System.out.println("\t 01) Analisis( ).");
+        System.out.println("\t 02) Analisis( String nombre_analisis, int tipo_analisis, Muestra Muestra1).");
+
+        System.out.println("\t 03) getNombre_analisis.");
+        System.out.println("\t 04) getTipo_analisis.");
+        System.out.println("\t 05) setNombre_analisis.");
+        System.out.println("\t 06) setTipo_analisis.");
+
+        System.out.println("\t 07) Comprobar_nombre_unico.");
+        System.out.println("\t 08) distancia.");
+        System.out.println("\t 09) Transforma_vectdeFLoats.");
+        System.out.println("\t 10) Clusters_con_menor_distancia");
+
+        System.out.println("\t 11) Genera_arbre_concret.");
+        System.out.println("\t 12) Representantes.");
+        System.out.println("\t 13) Clusters.");
+        System.out.println("\t 14) print_nombres.");
+        System.out.println("\t 15) Combina_clusters(C1, C2) test para la clase CLUSTER");
+    }
+
+    public static void main(String[] args) {
+        String nombreClase = "Analisis";
+        System.out.println("Driver Analisis");
+        Scanner scan = new Scanner(System.in);
+        ArrayList<String> a = new ArrayList<String>();
+        boolean out = false;
+
+        String op1, op2;
+        ArrayList<Integer> V1 = new ArrayList<Integer>();
+        Muestra m1;
+        h = new Analisis();
+        Analisis An1;
+        menu();
+
+        while(!out){
+            try{
+                String op = scan.nextLine();
+                switch (op) {
+
+                    case "00":
+                        out = true;
+                        break;
+
+                    case "01":
+
+                        h = new Analisis();
+                        break;
+
+                    case "02":
+                        System.out.println("Intruduir nom Analisis");
+                        op1 = scan.nextLine();
+                        System.out.println("Intruduir tipus Analisis");
+                        op2 = scan.nextLine();
+                        An1 = new Analisis(op1, op2, m1);
+                        break;
+
+                    case "03":
+                        System.out.println(" "An1.getNombre_analisis()" ");
+                        break;
+
+                    case "04":
+                        System.out.println(" " An1.getTipo_analisis()" ");
+                        break;
+
+                    case "05":
+                        System.out.println("Intruduir nou nom Analisis");
+                        op1 = scan.nextLine();
+                        An1.setNombre_analisis(op1);
+                        break;
+
+                    case "06":
+                        System.out.println("Intruduir nou Tipus Analisis");
+                        op1 = scan.nextLine();
+                        An1.setTipo_analisis(op1);
+                        break;
+
+
+
+                    case "07":
+                        op = scan.nextLine();
+                        h.writeTextFile(op, a);
+                        break;
+
+                    case "08":
+                        op = scan.nextLine();
+                        h.writeTextFile(op, a);
+                        break;
+
+                    case "09":
+                        op = scan.nextLine();
+                        h.writeTextFile(op, a);
+                        break;
+
+                    case "10":
+                        V1 = An1.Clusters_con_menor_distancia()
+                        System.out.println(V1.get(0)  "  i   "V1.get(1));
+                        break;
+
+                    Genera_arbre_concret
+                    case "11":
+                        System.out.println("Intruduir nombre de Clusters desitjats si valor <= 1 es generera tot l'Arbre");
+                        op1 = scan.nextLine();
+                        An1.Genera_arbre_concret(op1);
+                        break;
+
+                    case "12":
+                        An1.print_representantes();
+                        break;
+
+                    case "13":
+                        An1.print_Lista_perfiles_validos();
+                        break;
+
+                    case "14":
+                        V1 = An1.Clusters_con_menor_distancia()
+                        System.out.println(V1.get(0)  "  i   "V1.get(1));
+                        break;
+
+                    case "15":
+
+                        Cluster C1 = new Cluster();
+                        Cluster C2 = new Cluster();
+                        C1.Combina_clusters(C1, C2);
+
+                        V1 = An1.Clusters_con_menor_distancia()
+                        System.out.println(V1.get(0)  "  i   "V1.get(1));
+                        break;
+
+                    default:
+                        System.out.println("Opció no valida.");
+                        break;
+                }
+            }catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            finally{
+                //S'executa SEMPRE.
+            }
+        }
+        scan.close();
+    }
+
+}
