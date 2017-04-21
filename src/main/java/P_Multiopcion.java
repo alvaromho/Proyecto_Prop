@@ -1,9 +1,6 @@
 import java.util.*;
 import java.lang.*;
 
-/**
- * Paula Alemany i Vergé
- */
 
 public class P_Multiopcion extends Pregunta {
 

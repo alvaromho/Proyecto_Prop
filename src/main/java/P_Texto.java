@@ -1,9 +1,5 @@
 import java.util.*;
 
-/**
- * Paula Alemany i Vergé
- */
-
 public class P_Texto extends Pregunta {
 
     /**

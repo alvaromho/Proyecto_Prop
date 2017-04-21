@@ -1,8 +1,6 @@
 import java.util.*;
 
-/**
- *Paula Alemany i Vergé
- */
+
 public class P_Numerico extends Pregunta {
     /**
      * Atributos

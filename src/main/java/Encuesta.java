@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 /**
- *   Clase Encuesta
+ * Pol Moya Betriu.
  */
 
 
@@ -223,8 +223,8 @@ public class    Encuesta {
         ll_preguntes.set(index, pregunta_new);
     }
 
+    //Retorna el ll_preguntes donat un id_encuesta
     public Pregunta ll_preguntes(int id_encuesta) {
-        //Retorna el ll_preguntes donat un id_encuesta
         return ll_preguntes.get(id_encuesta);
     }
 
