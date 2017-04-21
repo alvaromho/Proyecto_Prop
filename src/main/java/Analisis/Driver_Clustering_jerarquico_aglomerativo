@@ -1,0 +1,88 @@
+
+package clases;
+import java.util.ArrayList;
+import java.util.Scanner;
+/**
+ *
+ *Driver Controlador Domini Classe Recurs
+ *
+ *@author Pablo.guizan
+ */
+public class Driver_Clustering_jerarquico_aglomerativo{
+
+    private static Driver_Clustering_jerarquico_aglomerativo DcJa;
+
+    public static void menu() {
+        System.out.println("Escolllir opción:");
+
+        System.out.println("\t 00) Salida.");
+        System.out.println("\t 01) Creacion de 1 objeto, e inicializacion (ArrayList<ArrayList<Float>> conj_respuestas, ArrayList<Encuesta_Respondida> ER1)");
+        System.out.println("\t 02) getNumCLusters Validos : \n.");
+        System.out.println("\t 03) boolean perfil_valido(int IDCLuster) .");
+        System.out.println("\t 04) void Avansa_Clustering(int idCluster1, int idCluster2) \n.");
+        System.out.println("\t 05) getListaPerfilesValidos .");
+    }
+
+
+    public static void main(String[] args) {
+
+        String nombreClase = "Clustering_jerarquico_aglomerativo\n";
+        System.out.println("Driver Clustering_jerarquico_aglomerativo\n");
+        Scanner scan = new Scanner(System.in);
+        ArrayList<String> a = new ArrayList<String>();
+        boolean out = false;
+
+        ArrayList<Encuesta_Respondida> ERS1 = null;
+        ArrayList<ArrayList<Float>> ALF1 = null;
+        Clustering_jerarquico_aglomerativo CJA1 = null;
+        Driver_Clustering_jerarquico_aglomerativo.menu();
+
+        while(!out){
+            try{
+                String op = scan.nextLine();
+                switch (op) {
+
+                    case "01":
+
+                       CJA1 = new Clustering_jerarquico_aglomerativo(null, ERS1);
+                        CJA1.print_Lista_perfiles_validos();
+                        CJA1.print_representantes();
+                        break;
+
+                    case "02":
+                        System.out.println( CJA1.getnum_clusters_validos());
+                        break;
+
+                    case "03":
+                        System.out.println("Indruduir una ID valida de un cluster\n");
+                        op = scan.nextLine();
+                        System.out.println(77);
+                        break;
+
+                    case "04":
+                        CJA1.Avansa_Clustering(0, 1);
+                        break;
+
+                    case "05":
+                        CJA1.getListaPerfilesValidos();
+                        break;
+
+                    case "00":
+                        out = true;
+                        break;
+
+                    default:
+                        System.out.println("Opció no valida.");
+                        break;
+                }
+            }catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            finally{
+                //S'executa SEMPRE.
+            }
+        }
+        scan.close();
+    }
+
+}
